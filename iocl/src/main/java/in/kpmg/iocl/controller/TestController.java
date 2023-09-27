@@ -14,6 +14,6 @@ public class TestController {
     @PostMapping("/fetch-details-with-txn")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
-        return service.fetchAPI(dto);
+        return service.fetchAPI_YV_TPT_CUSTRTD(dto);
     }
 }
