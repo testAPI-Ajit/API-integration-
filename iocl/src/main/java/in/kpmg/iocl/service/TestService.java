@@ -141,11 +141,85 @@ public class TestService {
             return new ApiResponse2<>(true,"Success",result,200);
 //            ObjectMapper mapper = new ObjectMapper();
 //            UidVault uidVault = mapper.readValue(result, UidVault.class);
-        } catch (ProtocolException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        } catch (MalformedURLException e) {
+        }
+    }
+    public ApiResponse2 fetchAPI_YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
+        try {
+            String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS";
+            String result="";
+
+
+
+            URL obj = new URL(url);
+            HttpURLConnection HTTPConnection = (HttpURLConnection) obj.openConnection();
+
+            HTTPConnection.setRequestMethod("POST");
+            HTTPConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            HTTPConnection.setDoOutput(true);
+            String hash = base64encoder("b2buser:iocl1234");
+            HTTPConnection.setRequestProperty("Authorization", "Basic " + hash);
+
+            String jsonInputString = "{\n" +
+                    "\"VAL_DATE\": 2022-09-09"+"\n" +
+                    "\"I_BURKS\":" +""+ "\n" +
+                    "\"I_WERKS\":" + "1140,31HS," + "\n" +
+                    "}";
+            DataOutputStream writeRequest = new DataOutputStream(HTTPConnection.getOutputStream());
+            writeRequest.writeBytes(jsonInputString);
+            writeRequest.flush();
+            writeRequest.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(HTTPConnection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            result = response.toString();
+            return new ApiResponse2<>(true,"Success",result,200);
+//            ObjectMapper mapper = new ObjectMapper();
+//            UidVault uidVault = mapper.readValue(result, UidVault.class);
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+        }
+    }
+    public ApiResponse2 fetchAPI_YV_EXCHG_RATE(PaymentDto dto) {
+        try {
+            String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_EXCHG_RATE";
+            String result="";
+
+
+
+            URL obj = new URL(url);
+            HttpURLConnection HTTPConnection = (HttpURLConnection) obj.openConnection();
+
+            HTTPConnection.setRequestMethod("POST");
+            HTTPConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            HTTPConnection.setDoOutput(true);
+            String hash = base64encoder("b2buser:iocl1234");
+            HTTPConnection.setRequestProperty("Authorization", "Basic " + hash);
+
+            String jsonInputString = "{\n" +
+                    "\"VAL_DATE\": 2022-09-09"+"\n" +
+                    "\"I_BURKS\":" +""+ "\n" +
+                    "\"I_WERKS\":" + "1140,31HS," + "\n" +
+                    "}";
+            DataOutputStream writeRequest = new DataOutputStream(HTTPConnection.getOutputStream());
+            writeRequest.writeBytes(jsonInputString);
+            writeRequest.flush();
+            writeRequest.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(HTTPConnection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            result = response.toString();
+            return new ApiResponse2<>(true,"Success",result,200);
+//            ObjectMapper mapper = new ObjectMapper();
+//            UidVault uidVault = mapper.readValue(result, UidVault.class);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
