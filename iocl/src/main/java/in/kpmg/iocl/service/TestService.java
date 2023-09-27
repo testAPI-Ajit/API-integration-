@@ -19,7 +19,7 @@ import java.util.Base64;
 public class TestService {
     public ApiResponse2 fetchAPI(PaymentDto dto) {
         try {
-            String url = "";
+            String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD";
             String result="";
 
 
@@ -30,11 +30,13 @@ public class TestService {
             HTTPConnection.setRequestMethod("POST");
             HTTPConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             HTTPConnection.setDoOutput(true);
-            String hash = base64encoder("username:password");
+            String hash = base64encoder("b2buser:iocl1234");
             HTTPConnection.setRequestProperty("Authorization", "Basic " + hash);
 
             String jsonInputString = "{\n" +
-                    "\"aadhaar_number\":" + aadharNumber + "\n" +
+                    "\"VAL_DATE\": +"2022-09-09"+"\n" +
+                    "\"I_BURKS\":" +""+ "\n" +
+                    "\"I_WERKS\":" + "1140,31HS," + "\n" +
                     "}";
             DataOutputStream writeRequest = new DataOutputStream(HTTPConnection.getOutputStream());
             writeRequest.writeBytes(jsonInputString);
@@ -59,5 +61,17 @@ public class TestService {
     }
     private String base64encoder (String str){
         return Base64.getEncoder().encodeToString(str.getBytes());
+        String url1 = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_LU_PCK_RATE";
+        String jsonInputString1 = "{\n" +
+                "\"VAL_DATE\": +"2022-09-09"+"\n" +
+                "\"I_BURKS\":" +""+ "\n" +
+                "\"I_WERKS\":" + "1140,31HS," + "\n" +
+                "}";
+        String url2 ="https://coisebizuat.ds.indianoil.in:6900/uat/RESTAdapter/RFC/YM_PO_DET_RFC_HO_LUBES";
+        String jsonInputString2 = "{\n" +
+                "\"CREATED_ON\": +"2022-09-09"+"\n" +
+                "\"MATERIAL_TYPE\":" +""+ "\n" +
+                "\"WERKS\":" + "1140,31HS," + "\n" +
+                "}";
     }
 }
