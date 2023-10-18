@@ -21,9 +21,6 @@ public class TestService {
         try {
             String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD";
             String result="";
-
-
-
             URL obj = new URL(url);
             HttpURLConnection HTTPConnection = (HttpURLConnection) obj.openConnection();
 
@@ -49,8 +46,9 @@ public class TestService {
                 response.append(inputLine);
             }
             result = response.toString();
+            ObjectMapper mapper = new ObjectMapper();
             return new ApiResponse2<>(true,"Success",result,200);
-//            ObjectMapper mapper = new ObjectMapper();
+
 //            UidVault uidVault = mapper.readValue(result, UidVault.class);
         } catch (ProtocolException e) {
             throw new RuntimeException(e);
