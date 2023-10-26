@@ -18,6 +18,12 @@ public class TestController {
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
         return service.fetchAPI_YV_TPT_CUSTRTD(dto);
     }
+
+    @PostMapping("/fetch-details-ssl-disabled")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ApiResponse2 fetchdetails1(@RequestBody PaymentDto dto) {
+        return service.testservice(dto);
+    }
     
 //    YV_EXCHANGE_RATE
 //
