@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-"Multiple markers at this line\n"
-+ "- Project build error: Non-resolvable parent POM for com.example:demo:0.0.1-SNAPSHOT: org.springframework.boot:spring-boot-starter-parent:pom:3.1.3 failed to transfer from https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer artifact org.springframework.boot:spring-boot-starter-parent:pom:3.1.3 from/to central (https://repo.maven.apache.org/maven2): repo.maven.apache.org and 'parent.relativePath' points at no local POM\n"
-+ "- Non-resolvable parent POM for com.example:demo:0.0.1-SNAPSHOT: org.springframework.boot:spring-boot-starter-parent:pom:3.1.3 failed to transfer from https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer artifact org.springframework.boot:spring-boot-starter-parent:pom:3.1.3 from/to central (https://repo.maven.apache.org/maven2): repo.maven.apache.org"
-
 @RestController
 public class TestController {
     @Autowired

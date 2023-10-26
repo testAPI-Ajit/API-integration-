@@ -50,12 +50,8 @@ public class TestService {
             return new ApiResponse2<>(true,"Success",result,200);
 
 //            UidVault uidVault = mapper.readValue(result, UidVault.class);
-        } catch (ProtocolException e) {
-            throw new RuntimeException(e);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e){
+            return new ApiResponse2<>(false,"Internal server error",e.getMessage(),500);
         }
     }
     private String base64encoder (String str){
