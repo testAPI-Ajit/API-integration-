@@ -318,7 +318,7 @@ public class TestService {
         }
         return httpClient;
     }
-    public ApiResponse2 testservice1(PaymentDto dto) {
+    public ApiResponse2 YV_LU_PCK_RATE(PaymentDto dto) {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_LU_PCK_RATE",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -331,13 +331,13 @@ public class TestService {
 //                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
             String jsonInputString = "{\n" +
-                    "    \"I_FROM_DATE\"   :   \"2022-01-05\",\n" +
-                    "    \"I_TO_DATE\" :   \"2022-01-30\",\n" +
+                    "    \"I_FROM_DATE\"   :" + dto.getI_FROM_DATE()+
+                    "    \"I_TO_DATE\" :" + dto.getI_TO_DATE()+
                     "    \"I_WERKS\":\n" +
                     "    {\n" +
                     "        \"item\":\n" +
                     "        {\n" +
-                    "            \"WERKS\" :   \"4136\"\n" +
+                    "            \"WERKS\" :" + dto.getWERKS()+
                     "        }\n" +
                     "\n" +
                     "    }\n" +
