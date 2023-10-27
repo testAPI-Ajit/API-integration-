@@ -22,7 +22,7 @@ public class TestController {
     @PostMapping("/fetch-details-ssl-disabled")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails1(@RequestBody PaymentDto dto) {
-        return service.testservice(dto);
+        return service.testservice1(dto);
     }
     
 //    YV_EXCHANGE_RATE

@@ -13,6 +13,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -303,17 +304,30 @@ public class TestService {
         return httpClient;
     }
     public ApiResponse2 testservice1(PaymentDto dto) {
-        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD",
+        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_LU_PCK_RATE",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
 
         try {
 
             StringEntity inputString = null;
-            String jsonInputString = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
-                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
-                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
+//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
+//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
+//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
+            String jsonInputString = "{\n" +
+                    "    \"I_FROM_DATE\"   :   \"2022-01-05\",\n" +
+                    "    \"I_TO_DATE\" :   \"2022-01-30\",\n" +
+                    "    \"I_WERKS\":\n" +
+                    "    {\n" +
+                    "        \"item\":\n" +
+                    "        {\n" +
+                    "            \"WERKS\" :   \"4136\"\n" +
+                    "        }\n" +
+                    "\n" +
+                    "    }\n" +
+                    "\n" +
+                    "}";
             try {
 
                 inputString = new StringEntity(jsonInputString);
@@ -342,9 +356,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            JSONObject json12 = new JSONObject(json);
             System.out.println("Test" + json);
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
-            return new ApiResponse2<>(true,"Success",json,200);
+            return new ApiResponse2<>(true,"Success",json12,200);
 
         } catch (Exception e) {
             e.printStackTrace();
