@@ -3,6 +3,7 @@ package in.kpmg.iocl.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import in.kpmg.iocl.dto.ApiResponse2;
 import in.kpmg.iocl.dto.PaymentDto;
+import in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -356,10 +357,11 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
-            JSONObject json12 = new JSONObject(json);
+            ObjectMapper mapper = new ObjectMapper();
+            YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
             System.out.println("Test" + json);
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
-            return new ApiResponse2<>(true,"Success",json12,200);
+            return new ApiResponse2<>(true,"Success",json,200);
 
         } catch (Exception e) {
             e.printStackTrace();
