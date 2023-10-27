@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import in.kpmg.iocl.dto.ApiResponse2;
 import in.kpmg.iocl.dto.PaymentDto;
 import in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response;
+import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_TRANSRATE;
+import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_TRANSRATE_REPO;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -18,6 +20,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -37,6 +40,9 @@ import java.util.Map;
 
 @Service
 public class TestService {
+
+    @Autowired
+    YV_LU_PCK_RATE_ET_TRANSRATE_REPO yv_lu_pck_rate_et_transrate_repo;
     public ApiResponse2 fetchAPI_YV_TPT_CUSTRTD(PaymentDto dto) {
         try {
             String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD";
@@ -367,6 +373,70 @@ public class TestService {
 //            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
             System.out.println("Test" + json);
+            for(int i=0;i<response.getET_TRANSRATE().getItem().size();i++) {
+                YV_LU_PCK_RATE_ET_TRANSRATE model = new YV_LU_PCK_RATE_ET_TRANSRATE();
+                try {
+                    model.setBEGDA(response.getET_TRANSRATE().getItem().get(i).getBEGDA());
+                }catch (NullPointerException e){
+                    model.setBEGDA(null);
+                }
+                try {
+                    model.setBZIRK(response.getET_TRANSRATE().getItem().get(i).getBZIRK());
+                }catch (NullPointerException e){
+                    model.setBZIRK(null);
+                }
+                try {
+                    model.setMANDT(response.getET_TRANSRATE().getItem().get(i).getMANDT());
+                } catch (NullPointerException e) {
+                    model.setMANDT(null);
+                }
+                try {
+                    model.setWERKS(response.getET_TRANSRATE().getItem().get(i).getWERKS());
+                } catch (NullPointerException e) {
+                    model.setWERKS(null);
+                }
+                try {
+                    model.setVEH_TYPE(response.getET_TRANSRATE().getItem().get(i).getVEH_TYPE());
+                } catch (NullPointerException e) {
+                    model.setVEH_TYPE(null);
+                }
+                try {
+                    model.setTU_NUMBER(response.getET_TRANSRATE().getItem().get(i).getTU_NUMBER());
+                } catch (NullPointerException e) {
+                    model.setTU_NUMBER(null);
+                }
+                try {
+                    model.setKUNNR(response.getET_TRANSRATE().getItem().get(i).getKUNNR());
+                } catch (NullPointerException e) {
+                    model.setKUNNR(null);
+                }
+                try {
+                    model.setYYRATE_APPLIC(response.getET_TRANSRATE().getItem().get(i).getYYRATE_APPLIC());
+                } catch (NullPointerException e) {
+                    model.setYYRATE_APPLIC(null);
+                }
+                try {
+                    model.setENDDA(response.getET_TRANSRATE().getItem().get(i).getENDDA());
+                } catch (NullPointerException e) {
+                    model.setENDDA(null);
+                }
+                try {
+                    model.setYYBASE_RATE(response.getET_TRANSRATE().getItem().get(i).getYYBASE_RATE());
+                } catch (NullPointerException e) {
+                    model.setYYBASE_RATE(null);
+                }
+                try {
+                    model.setPROVISIONAL(response.getET_TRANSRATE().getItem().get(i).getPROVISIONAL());
+                } catch (NullPointerException e) {
+                    model.setPROVISIONAL(null);
+                }
+                try {
+                    model.setREMARKS(response.getET_TRANSRATE().getItem().get(i).getREMARKS());
+                } catch (NullPointerException e) {
+                    model.setREMARKS(null);
+                }
+                yv_lu_pck_rate_et_transrate_repo.save(model);
+            }
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
             return new ApiResponse2<>(true,"Success",response,200);
 
