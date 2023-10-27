@@ -330,9 +330,11 @@ public class TestService {
 //                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
 //                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
+
+
             String jsonInputString = "{\n" +
-                    "    \"I_FROM_DATE\"   :" + dto.getI_FROM_DATE()+
-                    "    \"I_TO_DATE\" :" + dto.getI_TO_DATE()+
+                    "    \"I_FROM_DATE\"   :" + dto.getI_FROM_DATE()+","+
+                    "    \"I_TO_DATE\" :" + dto.getI_TO_DATE()+","+
                     "    \"I_WERKS\":\n" +
                     "    {\n" +
                     "        \"item\":\n" +
@@ -491,7 +493,7 @@ public class TestService {
                 yv_lu_pck_rate_et_transrate_repo.save(model);
             }
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
-            return new ApiResponse2<>(true,"Success",response,200);
+            return new ApiResponse2<>(true,"Success","data saved",200);
 
         } catch (Exception e) {
             e.printStackTrace();

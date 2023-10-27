@@ -13,17 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Autowired
     TestService service;
-    @PostMapping("/fetch-details")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
-        return service.fetchAPI_YV_TPT_CUSTRTD(dto);
-    }
+//    @PostMapping("/fetch-details")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
+//        return service.fetchAPI_YV_TPT_CUSTRTD(dto);
+//    }
 
     @PostMapping("/fetch-details")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ApiResponse2 fetchdetails1(@RequestBody PaymentDto dto) {
+    public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
 //        if(dto.getService()==1)
         return service.YV_LU_PCK_RATE(dto);
+    }
+    @PostMapping("/fetch-details1")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ApiResponse2 fetchdetails1(@RequestBody PaymentDto dto) {
+//        if(dto.getService()==1)
+        return service.testservice(dto);
     }
     
 //    YV_EXCHANGE_RATE
