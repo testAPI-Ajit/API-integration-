@@ -1,6 +1,9 @@
 package in.kpmg.iocl.service;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import in.kpmg.iocl.dto.ApiResponse2;
 import in.kpmg.iocl.dto.PaymentDto;
 import in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response;
@@ -358,10 +361,14 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT,false);
+//            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+//            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
             System.out.println("Test" + json);
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
-            return new ApiResponse2<>(true,"Success",json,200);
+            return new ApiResponse2<>(true,"Success",response,200);
 
         } catch (Exception e) {
             e.printStackTrace();
