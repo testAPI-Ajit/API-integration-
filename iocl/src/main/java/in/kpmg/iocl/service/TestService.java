@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import in.kpmg.iocl.dto.ApiResponse2;
 import in.kpmg.iocl.dto.PaymentDto;
 import in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response;
+import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_CAR_GRP;
 import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_TRANSRATE;
+import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_CAR_GRP_Repo;
 import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_TRANSRATE_REPO;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
@@ -40,6 +42,9 @@ import java.util.Map;
 
 @Service
 public class TestService {
+
+    @Autowired
+    YV_LU_PCK_RATE_ET_CAR_GRP_Repo yv_lu_pck_rate_et_car_grp_repo;
 
     @Autowired
     YV_LU_PCK_RATE_ET_TRANSRATE_REPO yv_lu_pck_rate_et_transrate_repo;
@@ -373,6 +378,54 @@ public class TestService {
 //            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
             System.out.println("Test" + json);
+
+            for(int i=0;i<response.getET_CAR_GRP().getItem().size();i++){
+                YV_LU_PCK_RATE_ET_CAR_GRP model = new YV_LU_PCK_RATE_ET_CAR_GRP();
+                try {
+                    model.setMANDT(response.getET_CAR_GRP().getItem().get(i).getMANDT());
+                } catch (NullPointerException e) {
+                    model.setMANDT(null);
+                }
+                try {
+                    model.setWERKS(response.getET_CAR_GRP().getItem().get(i).getWERKS());
+                } catch (NullPointerException e) {
+                    model.setWERKS(null);
+                }
+                try {
+                    model.setYYCARTON_GRP(response.getET_CAR_GRP().getItem().get(i).getYYCARTON_GRP());
+                } catch (NullPointerException e) {
+                    model.setYYCARTON_GRP(null);
+                }
+                try {
+                    model.setENDDA(response.getET_CAR_GRP().getItem().get(i).getENDDA());
+                } catch (NullPointerException e) {
+                    model.setENDDA(null);
+                }
+                try {
+                    model.setBEGDA(response.getET_CAR_GRP().getItem().get(i).getBEGDA());
+                } catch (NullPointerException e) {
+                    model.setBEGDA(null);
+                }
+                try {
+                    model.setWGT_FROM(response.getET_CAR_GRP().getItem().get(i).getWGT_FROM());
+                } catch (NullPointerException e) {
+                    model.setWGT_FROM(null);
+                }
+                try {
+                    model.setWGT_TO(response.getET_CAR_GRP().getItem().get(i).getWGT_TO());
+                } catch (NullPointerException e) {
+                    model.setWGT_TO(null);
+                }
+                try {
+                    model.setYYRATE_PERCENT(response.getET_CAR_GRP().getItem().get(i).getYYRATE_PERCENT());
+                } catch (NullPointerException e) {
+                    model.setYYRATE_PERCENT(null);
+                }
+                yv_lu_pck_rate_et_car_grp_repo.save(model);
+
+
+            }
+
             for(int i=0;i<response.getET_TRANSRATE().getItem().size();i++) {
                 YV_LU_PCK_RATE_ET_TRANSRATE model = new YV_LU_PCK_RATE_ET_TRANSRATE();
                 try {
