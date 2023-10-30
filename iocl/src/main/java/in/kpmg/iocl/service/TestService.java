@@ -552,6 +552,7 @@ public class TestService {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             YV_CONTRACT_RATES_Resp response = mapper.readValue(json, YV_CONTRACT_RATES_Resp.class);
             System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",response,200);

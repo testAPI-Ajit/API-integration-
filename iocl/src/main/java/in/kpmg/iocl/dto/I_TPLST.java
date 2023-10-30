@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class I_TPLST {
     @JsonProperty("item")
-    private I_TPLST_Item item;
+    private List<I_TPLST_Item> item;
 
 }
