@@ -8,20 +8,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name = "YV_LU_PCK_RATE_ET_CAR_GRP")
-public class YV_LU_PCK_RATE_ET_CAR_GRP {
-
-    private Integer MANDT;
-    private Integer WERKS;
-    private String YYCARTON_GRP;
-    private String BEGDA;
-    private String ENDDA;
-    private String WGT_FROM;
-    private String WGT_TO;
-    private String YYRATE_PERCENT;
-
+@Data
+@Table(name = "YV_MATERIAL_MASTER_ALL_VIEWS_E_MARM")
+public class MaterialMasterEmarmModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,4 +22,12 @@ public class YV_LU_PCK_RATE_ET_CAR_GRP {
     @UpdateTimestamp
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
+
+
+    private String MATNR;
+    private String UMREN;
+    private String MEINH;
+    private String SEPRTR;
+    private String UMREZ;
+    private String MEINS;
 }

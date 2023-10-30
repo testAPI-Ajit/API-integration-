@@ -1,6 +1,5 @@
 package in.kpmg.iocl.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,19 +7,23 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name = "YV_LU_PCK_RATE_ET_CAR_GRP")
-public class YV_LU_PCK_RATE_ET_CAR_GRP {
-
-    private Integer MANDT;
-    private Integer WERKS;
-    private String YYCARTON_GRP;
-    private String BEGDA;
-    private String ENDDA;
-    private String WGT_FROM;
-    private String WGT_TO;
-    private String YYRATE_PERCENT;
+@Data
+@Table(name = "YV_MATERIAL_MASTER_ALL_VIEWS_E_MARA")
+public class MaterialMasterEmaraModel {
+    private String MATNR;
+    private String MAKTX;
+    private Integer BISM;
+    private String GROES;
+    private Integer WRKST;
+    private String FERTH;
+    private String NORMT;
+    private String MEINS;
+    private String BRGEW;
+    private String NTGEW;
+    private String TRAGR;
+    private String ERSDA;
+    private String LAEDA;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

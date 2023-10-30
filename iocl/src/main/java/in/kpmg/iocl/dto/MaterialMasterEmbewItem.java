@@ -16,4 +16,5 @@ public class MaterialMasterEmbewItem {
     @JsonProperty("VERPR")
     private String VERPR;
     @JsonProperty("STPRS")
-    private String STPRS;}
+    private String STPRS;
+}

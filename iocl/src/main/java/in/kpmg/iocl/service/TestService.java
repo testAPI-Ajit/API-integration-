@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import in.kpmg.iocl.dto.*;
-import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_CAR_GRP;
-import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_TRANSRATE;
-import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_CAR_GRP_Repo;
-import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_TRANSRATE_REPO;
+import in.kpmg.iocl.models.*;
+import in.kpmg.iocl.repository.*;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -46,6 +44,22 @@ public class TestService {
 
     @Autowired
     YV_LU_PCK_RATE_ET_TRANSRATE_REPO yv_lu_pck_rate_et_transrate_repo;
+
+    @Autowired
+    MaterialMasterEmvkeRepo materialMasterEmvkeRepo;
+
+    @Autowired
+    MaterialMasterEmbewRepo materialMasterEmbewRepo;
+
+    @Autowired
+    MaterialMasterEmarmRepo materialMasterEmarmRepo;
+
+    @Autowired
+    MaterialMasterEmarcRepo materialMasterEmarcRepo;
+
+    @Autowired
+    MaterialMasterEmaraRepo materialMasterEmaraRepo;
+
 
     public static CloseableHttpClient getCloseableHttpClient() {
         CloseableHttpClient httpClient = null;
@@ -439,6 +453,271 @@ public class TestService {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
             MaterialMasterResponse response = mapper.readValue(json, MaterialMasterResponse.class);
+            for(int i=0;i<response.getE_MARA().getItem().size();i++){
+                MaterialMasterEmaraModel model = new MaterialMasterEmaraModel();
+                try {
+                    model.setMATNR(response.getE_MARA().getItem().get(i).getMATNR());
+                } catch (NullPointerException e) {
+                    model.setMATNR(null);
+                }
+                try {
+                    model.setMAKTX(response.getE_MARA().getItem().get(i).getMAKTX());
+                } catch (NullPointerException e) {
+                    model.setMAKTX(null);
+
+                }
+                try {
+                    model.setBISM(response.getE_MARA().getItem().get(i).getBISM());
+                } catch (NullPointerException e) {
+                    model.setBISM(null);
+                }
+
+                try {
+                    model.setGROES(response.getE_MARA().getItem().get(i).getGROES());
+                } catch (NullPointerException e) {
+                    model.setGROES(null);
+                }
+                try {
+                    model.setWRKST(response.getE_MARA().getItem().get(i).getWRKST());
+                } catch (NullPointerException e) {
+                    model.setWRKST(null);
+                }
+                try {
+                    model.setFERTH(response.getE_MARA().getItem().get(i).getFERTH());
+                } catch (NullPointerException e) {
+                    model.setFERTH(null);
+
+                }
+                try {
+                    model.setNORMT(response.getE_MARA().getItem().get(i).getNORMT());
+                } catch (NullPointerException e) {
+                    model.setNORMT(null);
+
+                }
+                try {
+                    model.setMEINS(response.getE_MARA().getItem().get(i).getMEINS());
+                } catch (NullPointerException e) {
+                    model.setMEINS(null);
+
+                }
+                try {
+                    model.setBRGEW(response.getE_MARA().getItem().get(i).getBRGEW());
+                } catch (NullPointerException e) {
+                    model.setBRGEW(null);
+
+                }
+                try {
+                    model.setNTGEW(response.getE_MARA().getItem().get(i).getNTGEW());
+                } catch (NullPointerException e) {
+                    model.setNTGEW(null);
+
+                }
+                try {
+                    model.setTRAGR(response.getE_MARA().getItem().get(i).getTRAGR());
+                } catch (NullPointerException e) {
+                    model.setTRAGR(null);
+
+                }
+                try {
+                    model.setERSDA(response.getE_MARA().getItem().get(i).getERSDA());
+                } catch (NullPointerException e) {
+                    model.setERSDA(null);
+
+                }
+                try {
+                    model.setLAEDA(response.getE_MARA().getItem().get(i).getLAEDA());
+                } catch (NullPointerException e) {
+                    model.setLAEDA(null);
+
+                }
+                materialMasterEmaraRepo.save(model);
+            }
+            for(int i=0;i<response.getE_MARC().getItem().size();i++){
+
+                MaterialMasterEmarcModel model = new MaterialMasterEmarcModel();
+                try {
+                    model.setMATNR(response.getE_MARC().getItem().get(i).getMATNR());
+                } catch (NullPointerException e) {
+                    model.setMATNR(null);
+
+                }
+                try {
+                    model.setWERKS(response.getE_MARC().getItem().get(i).getWERKS());
+                } catch (NullPointerException e) {
+                    model.setWERKS(null);
+
+                }
+                try {
+                    model.setUOMGR(response.getE_MARC().getItem().get(i).getUOMGR());
+                } catch (NullPointerException e) {
+                    model.setUOMGR(null);
+
+                }
+                try {
+                    model.setUMRSL(response.getE_MARC().getItem().get(i).getUMRSL());
+                } catch (NullPointerException e) {
+                    model.setUMRSL(null);
+                }
+                try {
+                    model.setABFAC(response.getE_MARC().getItem().get(i).getABFAC());
+                } catch (NullPointerException e) {
+                    model.setABFAC(null);
+
+                }
+                materialMasterEmarcRepo.save(model);
+
+
+            }
+            for(int i=0;i<response.getE_MVKE().getItem().size();i++){
+                MaterialMasterEmvkeModel model = new MaterialMasterEmvkeModel();
+                try {
+                    model.setMATNR(response.getE_MVKE().getItem().get(i).getMATNR());
+                } catch (NullPointerException e) {
+                    model.setMATNR(null);
+                }
+                try {
+                    model.setVKORG(response.getE_MVKE().getItem().get(i).getVKORG());
+                } catch (NullPointerException e) {
+                    model.setVKORG(null);
+                }
+                try {
+                    model.setVTWEG(response.getE_MVKE().getItem().get(i).getVTWEG());
+                } catch (NullPointerException e) {
+                    model.setVTWEG(null);
+                }
+                try {
+                    model.setKONDM(response.getE_MVKE().getItem().get(i).getKONDM());
+                } catch (NullPointerException e) {
+                    model.setKONDM(null);
+
+                }
+                try {
+                    model.setKONDMT(response.getE_MVKE().getItem().get(i).getKONDMT());
+                } catch (NullPointerException e) {
+                    model.setKONDMT(null);
+
+                }
+                try {
+                    model.setKTGRM(response.getE_MVKE().getItem().get(i).getKTGRM());
+                } catch (NullPointerException e) {
+                    model.setKTGRM(null);
+
+                }
+                try {
+                    model.setKTGRMT(response.getE_MVKE().getItem().get(i).getKTGRMT());
+                } catch (NullPointerException e) {
+                    model.setKTGRMT(null);
+
+                }
+                try {
+                    model.setMVGR1(response.getE_MVKE().getItem().get(i).getMVGR1());
+                } catch (NullPointerException e) {
+                    model.setMVGR1(null);
+
+                }
+                try {
+                    model.setMVGR2(response.getE_MVKE().getItem().get(i).getMVGR2());
+                } catch (NullPointerException e) {
+                    model.setMVGR2(null);
+
+                }
+                try {
+                    model.setMVGR3(response.getE_MVKE().getItem().get(i).getMVGR3());
+                } catch (NullPointerException e) {
+                    model.setMVGR3(null);
+
+                }
+                try {
+                    model.setDWERK(response.getE_MVKE().getItem().get(i).getDWERK());
+                } catch (NullPointerException e) {
+                    model.setDWERK(null);
+
+                }
+                materialMasterEmvkeRepo.save(model);
+            }
+            for(int i=0;i<response.getE_MBEW().getItem().size();i++){
+                MaterialMasterEmbewModel model = new MaterialMasterEmbewModel();
+                try {
+                    model.setMATNR(response.getE_MBEW().getItem().get(i).getMATNR());
+                } catch (NullPointerException e) {
+                    model.setMATNR(null);
+
+                }
+                try {
+                    model.setBWKEY(response.getE_MBEW().getItem().get(i).getBWKEY());
+                } catch (NullPointerException e) {
+                    model.setBWKEY(null);
+
+                }
+                try {
+                    model.setBKLAS(response.getE_MBEW().getItem().get(i).getBKLAS());
+                } catch (NullPointerException e) {
+                    model.setBKLAS(null);
+
+                }
+                try {
+                    model.setVPRSV(response.getE_MBEW().getItem().get(i).getVPRSV());
+                } catch (NullPointerException e) {
+                    model.setVPRSV(null);
+
+                }
+                try {
+                    model.setVERPR(response.getE_MBEW().getItem().get(i).getVERPR());
+                } catch (NullPointerException e) {
+                    model.setVERPR(null);
+
+                }
+                try {
+                    model.setSTPRS(response.getE_MBEW().getItem().get(i).getSTPRS());
+                } catch (NullPointerException e) {
+                    model.setSTPRS(null);
+
+                }
+                materialMasterEmbewRepo.save(model);
+
+            }
+            for(int i=0;i<response.getE_MARM().getItem().size();i++){
+                MaterialMasterEmarmModel model = new MaterialMasterEmarmModel();
+
+                try {
+                    model.setMATNR(response.getE_MARM().getItem().get(i).getMATNR());
+                } catch (NullPointerException e) {
+                    model.setMATNR(null);
+
+                }
+                try {
+                    model.setUMREN(response.getE_MARM().getItem().get(i).getUMREN());
+                } catch (NullPointerException e) {
+                    model.setUMREN(null);
+
+                }
+                try {
+                    model.setMEINH(response.getE_MARM().getItem().get(i).getMEINH());
+                } catch (NullPointerException e) {
+                    model.setMEINH(null);
+
+                }
+                try {
+                    model.setSEPRTR(response.getE_MARM().getItem().get(i).getSEPRTR());
+                } catch (NullPointerException e) {
+                    model.setSEPRTR(null);
+
+                }
+                try {
+                    model.setUMREZ(response.getE_MARM().getItem().get(i).getUMREZ());
+                } catch (NullPointerException e) {
+                    model.setUMREZ(null);
+
+                }
+                try {
+                    model.setMEINS(response.getE_MARM().getItem().get(i).getMEINS());
+                } catch (NullPointerException e) {
+                    model.setMEINS(null);
+
+                }
+                materialMasterEmarmRepo.save(model);
+
+            }
             System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
@@ -621,6 +900,7 @@ public class TestService {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             YV_TPT_CUSTRTD_Response response = mapper.readValue(json, YV_TPT_CUSTRTD_Response.class);
             System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",response,200);

@@ -8,27 +8,27 @@ public class MaterialMasterEmaraItem {
     @JsonProperty("MATNR")
     private String MATNR;
     @JsonProperty("MAKTX")
-    private String MAKTX;//: "STOCK 6020 - IMPORTED",
+    private String MAKTX;
     @JsonProperty("BISM")
-    private Integer BISM;//
+    private Integer BISM;
     @JsonProperty("GROES")
-    private String GROES;//": "",
+    private String GROES;
     @JsonProperty("WRKST")
     private Integer WRKST;
     @JsonProperty("FERTH")
-    private String FERTH;//": "",
+    private String FERTH;
     @JsonProperty("NORMT")
-    private String NORMT;//": "",
+    private String NORMT;
     @JsonProperty("MEINS")
-    private String MEINS;//": "L29",
+    private String MEINS;
     @JsonProperty("BRGEW")
-    private String BRGEW;//": "1.000",
+    private String BRGEW;
     @JsonProperty("NTGEW")
-    private String NTGEW;//": "1.000",
+    private String NTGEW;
     @JsonProperty("TRAGR")
-    private String TRAGR;//": "0001",
+    private String TRAGR;
     @JsonProperty("ERSDA")
-    private String ERSDA;//": "2001-08-03",
+    private String ERSDA;
     @JsonProperty("LAEDA")
-    private String LAEDA;//": "2022-01-05"
+    private String LAEDA;
 }
