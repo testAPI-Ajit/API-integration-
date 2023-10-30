@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import in.kpmg.iocl.dto.ApiResponse2;
-import in.kpmg.iocl.dto.PaymentDto;
-import in.kpmg.iocl.dto.YM_PO_DET_RFC_HO_LUBES_Response;
-import in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response;
+import in.kpmg.iocl.dto.*;
 import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_CAR_GRP;
 import in.kpmg.iocl.models.YV_LU_PCK_RATE_ET_TRANSRATE;
 import in.kpmg.iocl.repository.YV_LU_PCK_RATE_ET_CAR_GRP_Repo;
@@ -439,11 +436,11 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
-//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            MaterialMasterResponse response = mapper.readValue(json, MaterialMasterResponse.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",json,200);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
