@@ -26,15 +26,16 @@ public class TestController {
         return service.YV_LU_PCK_RATE(dto);
         else if(dto.getService()==2)
             return service.YM_PO_DET_RFC_HO_LUBES(dto);
+        else if(dto.getService()==3)
+            return service.YV_EXCHG_RATE(dto);//
+        else if(dto.getService()==4)
+            return service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
+        else if(dto.getService()==5)
+            return service.Y_LUBEBOM_DNLD(dto);
         else
             return new ApiResponse2<>(false,"Incorrect Service",null,400);
     }
-    @PostMapping("/fetch-details1")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ApiResponse2 fetchdetails1(@RequestBody PaymentDto dto) {
-//        if(dto.getService()==1)
-        return service.testservice(dto);
-    }
+
     
 //    YV_EXCHANGE_RATE
 //
