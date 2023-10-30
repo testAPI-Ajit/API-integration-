@@ -22,8 +22,12 @@ public class TestController {
     @PostMapping("/fetch-details")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
-//        if(dto.getService()==1)
+        if(dto.getService()==1)
         return service.YV_LU_PCK_RATE(dto);
+        else if(dto.getService()==2)
+            return service.YM_PO_DET_RFC_HO_LUBES(dto);
+        else
+            return new ApiResponse2<>(false,"Incorrect Service",null,400);
     }
     @PostMapping("/fetch-details1")
     @CrossOrigin(origins = "*", allowedHeaders = "*")

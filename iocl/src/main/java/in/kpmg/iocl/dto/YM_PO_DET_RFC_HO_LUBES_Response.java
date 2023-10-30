@@ -1,0 +1,12 @@
+package in.kpmg.iocl.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class YM_PO_DET_RFC_HO_LUBES_Response {
+    @JsonProperty("item")
+    private List<YM_PO_DET_RFC_HO_LUBES_Item> item;
+}
