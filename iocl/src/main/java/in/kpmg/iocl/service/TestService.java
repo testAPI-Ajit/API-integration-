@@ -719,7 +719,7 @@ public class TestService {
 
             }
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",response,200);
+            return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
