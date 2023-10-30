@@ -23,16 +23,20 @@ public class TestController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
         if(dto.getService()==1)
-        return service.YV_LU_PCK_RATE(dto);
+        return service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
         else if(dto.getService()==2)
-            return service.YM_PO_DET_RFC_HO_LUBES(dto);
+            return service.YV_EXCHG_RATE(dto);
         else if(dto.getService()==3)
-            return service.YV_EXCHG_RATE(dto);//
+            return service.YM_PO_DET_RFC_HO_LUBES(dto);//
         else if(dto.getService()==4)
-            return service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
-        else if(dto.getService()==5)
+            return service.YV_LU_PCK_RATE(dto);
+        else if(dto.getService()==6)
+            return service.YV_TPT_CUSTRTD(dto);
+        else if(dto.getService()==7)
+            return service.YV_CONTRACT_RATES(dto);
+        else if(dto.getService()==8)
             return service.Y_LUBEBOM_DNLD(dto);
-        else
+                else
             return new ApiResponse2<>(false,"Incorrect Service",null,400);
     }
 

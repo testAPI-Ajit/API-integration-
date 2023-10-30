@@ -506,4 +506,129 @@ public class TestService {
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
+
+    public ApiResponse2 YV_CONTRACT_RATES(PaymentDto dto) {
+        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_CONTRACT_RATES",
+                userName = "b2buser", password = "iocl1234", request = "";
+        Map<Integer, String> responseMap = new HashMap<>();
+
+        try {
+
+            StringEntity inputString = null;
+//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
+//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
+//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
+
+
+            String jsonInputString ="  {\n" +
+                    "    \"I_FKDAT\": \"2022-07-01\"\n" +
+                    "     \n" +
+                    "  }";
+            try {
+
+                inputString = new StringEntity(jsonInputString);
+                System.out.println(inputString);
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+
+            HttpPost postRequest = new HttpPost(url);
+
+            String auth = userName + ":" + password;
+            byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
+            System.out.println("Encoded String = " + new String(encodedAuth));
+            String authHeader = "Basic " + new String(encodedAuth);
+            System.out.println("Auth String =" + authHeader);
+            postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
+
+            inputString.setContentType("application/json");
+
+            postRequest.setEntity(inputString);
+
+            CloseableHttpClient closeableHttpClient = getCloseableHttpClient();
+
+            HttpResponse response1 = closeableHttpClient.execute(postRequest);
+
+            int statusCode = response1.getStatusLine().getStatusCode();
+
+            String json = EntityUtils.toString(response1.getEntity());
+            ObjectMapper mapper = new ObjectMapper();
+//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            System.out.println("Test" + json);
+            return new ApiResponse2<>(true,"Data saved",json,200);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
+        }
+    }
+
+    public ApiResponse2 YV_TPT_CUSTRTD(PaymentDto dto) {
+        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD",
+                userName = "b2buser", password = "iocl1234", request = "";
+        Map<Integer, String> responseMap = new HashMap<>();
+
+        try {
+
+            StringEntity inputString = null;
+//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
+//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
+//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
+
+
+            String jsonInputString = "{\n" +
+                    "    \"VAL_DATE\": \"2022-01-01\",\n" +
+                    "    \"I_BUKRS\": {\n" +
+                    "      \"item\": {\n" +
+                    "        \"MANDT\": \"310\",\n" +
+                    "        \"BUKRS\": \"4000\"\n" +
+                    "      }\n" +
+                    "    },\n" +
+                    "    \"I_WERKS\": {\n" +
+                    "      \"item\": {\n" +
+                    "        \"MANDT\": \"310\",\n" +
+                    "        \"WERKS\": \"4221\"\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  }";
+            try {
+
+                inputString = new StringEntity(jsonInputString);
+                System.out.println(inputString);
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+
+            HttpPost postRequest = new HttpPost(url);
+
+            String auth = userName + ":" + password;
+            byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
+            System.out.println("Encoded String = " + new String(encodedAuth));
+            String authHeader = "Basic " + new String(encodedAuth);
+            System.out.println("Auth String =" + authHeader);
+            postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
+
+            inputString.setContentType("application/json");
+
+            postRequest.setEntity(inputString);
+
+            CloseableHttpClient closeableHttpClient = getCloseableHttpClient();
+
+            HttpResponse response1 = closeableHttpClient.execute(postRequest);
+
+            int statusCode = response1.getStatusLine().getStatusCode();
+
+            String json = EntityUtils.toString(response1.getEntity());
+            ObjectMapper mapper = new ObjectMapper();
+//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            System.out.println("Test" + json);
+            return new ApiResponse2<>(true,"Data saved",json,200);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
+        }
+    }
 }
