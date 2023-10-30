@@ -376,13 +376,13 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
 ////            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 ////            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
-//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            YV_EXCHG_RATE_Resp response = mapper.readValue(json, YV_EXCHG_RATE_Resp.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",json,200);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
@@ -493,11 +493,11 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
-//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            Y_LUBEBOM_DNLD_Resp response = mapper.readValue(json, Y_LUBEBOM_DNLD_Resp.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",json,200);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
@@ -550,11 +550,11 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
-//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            YV_CONTRACT_RATES_Resp response = mapper.readValue(json, YV_CONTRACT_RATES_Resp.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",json,200);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
@@ -618,11 +618,11 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             ObjectMapper mapper = new ObjectMapper();
-//            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
-//            YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+            YV_TPT_CUSTRTD_Response response = mapper.readValue(json, YV_TPT_CUSTRTD_Response.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(true,"Data saved",json,200);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
