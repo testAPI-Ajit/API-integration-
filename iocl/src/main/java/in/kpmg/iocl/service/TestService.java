@@ -575,7 +575,7 @@ public class TestService {
 //            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
             System.out.println("Test" + json);
-            return new ApiResponse2<>(false,"Internal Server Error",response,500);
+            return new ApiResponse2<>(true,"Data saved",response,200);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);

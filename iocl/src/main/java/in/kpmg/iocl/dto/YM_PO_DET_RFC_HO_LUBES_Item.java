@@ -17,7 +17,7 @@ public class YM_PO_DET_RFC_HO_LUBES_Item {
     @JsonProperty("LOEKZ")
     private String LOEKZ;
     @JsonProperty("WERKS")
-    private Integer WERKS;
+    private String WERKS;
     @JsonProperty("AEDAT")
     private String AEDAT;
     @JsonProperty("WAERS")
@@ -31,11 +31,11 @@ public class YM_PO_DET_RFC_HO_LUBES_Item {
     @JsonProperty("MATKL")
     private String MATKL;
     @JsonProperty("MATNR")
-    private Integer MATNR;
+    private String MATNR;
     @JsonProperty("BELNR")
-    private Integer BELNR;
+    private String BELNR;
     @JsonProperty("GJAHR")
-    private Integer GJAHR;
+    private String GJAHR;
     @JsonProperty("BUZEI")
     private String BUZEI;
     @JsonProperty("MENGE")
