@@ -22,6 +22,7 @@ public class TestController {
     @PostMapping("/fetch-details")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
+     //   System.out.println("Inside controller");
         if(dto.getService()==1)
         return service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
         else if(dto.getService()==2)
@@ -30,6 +31,8 @@ public class TestController {
             return service.YM_PO_DET_RFC_HO_LUBES(dto);//
         else if(dto.getService()==4)
             return service.YV_LU_PCK_RATE(dto);
+        else if(dto.getService()==5)
+             return service.YV_TPT_CFARATES(dto);
         else if(dto.getService()==6)
             return service.YV_TPT_CUSTRTD(dto);
         else if(dto.getService()==7)

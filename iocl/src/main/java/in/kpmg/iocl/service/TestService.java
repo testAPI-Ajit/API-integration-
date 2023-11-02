@@ -86,6 +86,12 @@ public class TestService {
     @Autowired
     YV_CONTRACT_RATES_I_TPLST_Repo yv_contract_rates_i_tplst_repo;
 
+    @Autowired
+    YV_ET_CFACONT_Repo yv_et_cfacont_repo;
+
+    @Autowired
+    YV_ET_CFARATES_Repo yvEtCfaratesRepo;
+
 
     public static CloseableHttpClient getCloseableHttpClient() {
         CloseableHttpClient httpClient = null;
@@ -287,9 +293,248 @@ public class TestService {
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
 
         }}
+
+    //==============================================YV_TPT_CFARATES==============================================================================
+    public ApiResponse2 YV_TPT_CFARATES(PaymentDto dto) {
+        System.out.println("..................Cfa_rates_starts.........................");
+        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CFARATES",
+                userName = "b2buser", password = "iocl1234", request = "";
+        System.out.println("......CFA Data url................"+url);
+        Map<Integer, String> responseMap = new HashMap<>();
+
+        try {
+
+            StringEntity inputString = null;
+//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
+//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
+//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
+
+
+
+            String jsonInputString = "{\n" +
+                    "    \"I_AS_ON_DATE\"   :" + dto.getI_AS_ON_DATE()+ "\n" +
+                    "}";
+
+            try {
+
+                inputString = new StringEntity(jsonInputString);
+                System.out.println(inputString);
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+
+            HttpPost postRequest = new HttpPost(url);
+
+            String auth = userName + ":" + password;
+            byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
+            System.out.println("Encoded String = " + new String(encodedAuth));
+            String authHeader = "Basic " + new String(encodedAuth);
+            System.out.println("Auth String =" + authHeader);
+            postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
+
+            inputString.setContentType("application/json");
+
+            postRequest.setEntity(inputString);
+
+            CloseableHttpClient closeableHttpClient = getCloseableHttpClient();
+
+            HttpResponse response1 = closeableHttpClient.execute(postRequest);
+            int statusCode = response1.getStatusLine().getStatusCode();
+
+            String json = EntityUtils.toString(response1.getEntity());
+            System.out.println("Input Data is............:"+json);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
+
+            YV_TPT_CFARATE_Response response = mapper.readValue(json, YV_TPT_CFARATE_Response.class);
+
+            System.out.println("JSON DATA: "+response);
+           // System.out.println("======================================================================================");
+            System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
+            for(int i=0;i<response.getYV_TPT_CFACONT().getItem().size();i++){
+                YV_TPT_CFACONT_Model model = new YV_TPT_CFACONT_Model();
+                try{
+                    model.setMANDT(response.getYV_TPT_CFACONT().getItem().get(i).getMANDT());
+                }catch (NullPointerException e1){
+                    model.setMANDT(null);
+                }
+                try
+                {
+                    model.setVSTEL(response.getYV_TPT_CFACONT().getItem().get(i).getVSTEL());
+                }catch (NullPointerException e)
+                {
+                    model.setVSTEL(null);
+                }
+                try{
+                    model.setYYTENDERNO(response.getYV_TPT_CFACONT().getItem().get(i).getYYTENDERNO());
+                }catch(NullPointerException e){
+                    model.setYYTENDERNO(null);
+                }
+                try
+                {
+                    model.setREMARKS(response.getYV_TPT_CFACONT().getItem().get(i).getREMARKS());
+                }catch (NullPointerException e){
+                    model.setREMARKS(null);
+                }
+                try{
+                    model.setTRANS_UOM(response.getYV_TPT_CFACONT().getItem().get(i).getTRANS_UOM());
+                }catch (NullPointerException e)
+                {
+                    model.setTRANS_UOM(null);
+                }
+                try{
+                    model.setYYVENDOR(response.getYV_TPT_CFACONT().getItem().get(i).getYYVENDOR());
+                }catch(NullPointerException e)
+                {
+                    model.setYYVENDOR(null);
+                }
+                try{
+                    model.setFIXED_CHARGES(response.getYV_TPT_CFACONT().getItem().get(i).getFIXED_CHARGES());
+                }catch (NullPointerException e)
+                {
+                    model.setFIXED_CHARGES(null);
+                }
+                try
+                {
+                    model.setHANDLING_RATE(response.getYV_TPT_CFACONT().getItem().get(i).getHANDLING_RATE());
+                }catch (NullPointerException e)
+                {
+                    model.setHANDLING_RATE(null);
+                }
+                try
+                {
+                    model.setHSD_BASERATE(response.getYV_TPT_CFACONT().getItem().get(i).getHSD_BASERATE());
+                }catch (NullPointerException e)
+                {
+                    model.setHSD_BASERATE(null);
+                }
+                try{
+                    model.setERNAM(response.getYV_TPT_CFACONT().getItem().get(i).getERNAM());
+                }catch (NullPointerException e)
+                {
+                    model.setERNAM(null);
+                }
+                try
+                {
+                    model.setERZET(response.getYV_TPT_CFACONT().getItem().get(i).getERZET());
+                }catch(NullPointerException e)
+                {
+                    model.setERNAM(null);
+                }
+                try
+                {
+                    model.setAENAM(response.getYV_TPT_CFACONT().getItem().get(i).getAENAM());
+                }catch(NullPointerException e)
+                {
+                    model.setAENAM(null);
+                }
+
+                try
+                {
+                    model.setAEZET(response.getYV_TPT_CFACONT().getItem().get(i).getAEZET());
+                }
+                catch(NullPointerException e) {
+                    model.setAEZET(null);
+                }
+                yv_et_cfacont_repo.save(model);
+         //       System.out.println("............First CFA data saved in repo...............");
+            }
+            for(int i=0;i<response.getYV_TPT_CFARATES().getItem().size();i++) {
+                YV_TPT_CFARATES_Model model = new YV_TPT_CFARATES_Model();
+                try
+                {
+                    model.setMANDT(response.getYV_TPT_CFARATES().getItem().get(i).getMANDT());
+                }catch (Exception e)
+                {
+                    model.setMANDT(null);
+                }
+                try
+                {
+                    model.setVSTEL(response.getYV_TPT_CFARATES().getItem().get(i).getVSTEL());
+                }catch (Exception e)
+                {
+                    model.setVSTEL(null);
+                }
+                try{
+                    model.setYYTENDERNO(response.getYV_TPT_CFARATES().getItem().get(i).getYYTENDERNO());
+                }catch(NullPointerException e)
+                {
+                    model.setYYTENDERNO(null);
+                }
+                try{
+                    model.setOUTSIDESTATE(response.getYV_TPT_CFARATES().getItem().get(i).getOUTSIDESTATE());
+                }
+                catch(NullPointerException ex)
+                {
+                    model.setOUTSIDESTATE(null);
+                }
+                try{
+                    model.setSLAB_FROM_KM(response.getYV_TPT_CFARATES().getItem().get(i).getSLAB_FROM_KM());
+                }catch (NullPointerException e)
+                {
+                    model.setSLAB_FROM_KM(null);
+                }
+                try{
+                    model.setSLAB_TO_KM(response.getYV_TPT_CFARATES().getItem().get(i).getSLAB_TO_KM());
+                }catch (NullPointerException e)
+                {
+                    model.setSLAB_TO_KM(null);
+                }
+                try{
+                    model.setRATEUOM(response.getYV_TPT_CFARATES().getItem().get(i).getRATEUOM());
+                }catch (NullPointerException e)
+                {
+                    model.setRATEUOM(null);
+                }
+                try{
+                    model.setREMARKS(response.getYV_TPT_CFARATES().getItem().get(i).getREMARKS());
+                }catch (NullPointerException e)
+                {
+                    model.setREMARKS(null);
+                }
+                try{
+                    model.setERNAM(response.getYV_TPT_CFARATES().getItem().get(i).getERNAM());
+                }catch (NullPointerException e)
+                {
+                    model.setERNAM(null);
+                }
+                try{
+                    model.setERZET(response.getYV_TPT_CFARATES().getItem().get(i).getERZET());
+                }catch(NullPointerException e)
+                {
+                    model.setERZET(null);
+                }
+                try{
+                    model.setAENAM(response.getYV_TPT_CFARATES().getItem().get(i).getAENAM());
+                }catch (NullPointerException e)
+                {
+                    model.setAENAM(null);
+                }
+                try{
+                    model.setAEZET(response.getYV_TPT_CFARATES().getItem().get(i).getAEZET());
+                }catch (NullPointerException e){
+                    model.setAEZET(null);
+                }
+                yvEtCfaratesRepo.save(model);
+                System.out.println("coming out of CFA...........................");
+            }
+
+            return new ApiResponse2<>(true,"Data saved",null,200);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
+        }
+    }
+
+
+
+
+
+    //============================================================================================================================================
     public ApiResponse2 YM_PO_DET_RFC_HO_LUBES(PaymentDto dto) {
 
-
+        System.out.println(".........inside Ho Lubes...........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/YM_PO_DET_RFC_HO_LUBES",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -471,7 +716,7 @@ public class TestService {
                     model.setBSTME(null);
                 }
                 ym_po_det_rfc_ho_lubes_repo.save(model);
-
+                System.out.println(".......................ho lubes method 1 saved...........................");
             }
             System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);

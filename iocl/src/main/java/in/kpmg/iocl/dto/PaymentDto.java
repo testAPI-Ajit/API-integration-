@@ -16,7 +16,6 @@ public class PaymentDto {
     private String I_DIVISION;
     @JsonProperty("WERKS")
     private String WERKS;
-
     @JsonProperty("SIGN")
     private String SIGN;
     @JsonProperty("OPTION")
@@ -35,4 +34,6 @@ public class PaymentDto {
     private String I_ALL_BOMM;
     @JsonProperty("I_MAINBOM_ONLY")
     private String I_MAINBOM_ONLY;
+    @JsonProperty("I_AS_ON_DATE")
+    private String I_AS_ON_DATE;
 }
