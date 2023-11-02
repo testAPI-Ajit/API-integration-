@@ -296,10 +296,10 @@ public class TestService {
 
     //==============================================YV_TPT_CFARATES==============================================================================
     public ApiResponse2 YV_TPT_CFARATES(PaymentDto dto) {
-        System.out.println("..................Cfa_rates_starts.........................");
+      //  System.out.println("..................Cfa_rates_starts.........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CFARATES",
                 userName = "b2buser", password = "iocl1234", request = "";
-        System.out.println("......CFA Data url................"+url);
+      //  System.out.println("......CFA Data url................"+url);
         Map<Integer, String> responseMap = new HashMap<>();
 
         try {
@@ -342,7 +342,7 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
-            System.out.println("Input Data is............:"+json);
+        //    System.out.println("Input Data is............:"+json);
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -351,7 +351,7 @@ public class TestService {
 
             System.out.println("JSON DATA: "+response);
            // System.out.println("======================================================================================");
-            System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
+          //  System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
             for(int i=0;i<response.getYV_TPT_CFACONT().getItem().size();i++){
                 YV_TPT_CFACONT_Model model = new YV_TPT_CFACONT_Model();
                 try{
@@ -517,7 +517,7 @@ public class TestService {
                     model.setAEZET(null);
                 }
                 yvEtCfaratesRepo.save(model);
-                System.out.println("coming out of CFA...........................");
+              //  System.out.println("coming out of CFA...........................");
             }
 
             return new ApiResponse2<>(true,"Data saved",null,200);
