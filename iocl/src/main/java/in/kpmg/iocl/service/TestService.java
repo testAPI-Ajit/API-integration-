@@ -126,17 +126,17 @@ public class TestService {
 
 
             String jsonInputString = "{\n" +
-                    "    \"I_FROM_DATE\"   :" + dto.getI_FROM_DATE()+","+
-                    "    \"I_TO_DATE\" :" + dto.getI_TO_DATE()+","+
+                    "    \"I_FROM_DATE\" :" + dto.getI_FROM_DATE() + "," +
+                    "    \"I_TO_DATE\" :" + dto.getI_TO_DATE() + "," +
                     "    \"I_WERKS\":\n" +
                     "    {\n" +
                     "        \"item\":\n" +
                     "        {\n" +
-                    "            \"WERKS\" :" + dto.getWERKS()+
+                    "            \"WERKS\" :" + dto.getWERKS() +
                     "        }\n" +
-                    "\n" +
+                            "\n"+
                     "    }\n" +
-                    "\n" +
+                    "\n"+
                     "}";
             try {
 
@@ -296,10 +296,10 @@ public class TestService {
 
     //==============================================YV_TPT_CFARATES==============================================================================
     public ApiResponse2 YV_TPT_CFARATES(PaymentDto dto) {
-      //  System.out.println("..................Cfa_rates_starts.........................");
+        //  System.out.println("..................Cfa_rates_starts.........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CFARATES",
                 userName = "b2buser", password = "iocl1234", request = "";
-      //  System.out.println("......CFA Data url................"+url);
+        //  System.out.println("......CFA Data url................"+url);
         Map<Integer, String> responseMap = new HashMap<>();
 
         try {
@@ -342,7 +342,7 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
-        //    System.out.println("Input Data is............:"+json);
+            //    System.out.println("Input Data is............:"+json);
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -350,8 +350,8 @@ public class TestService {
             YV_TPT_CFARATE_Response response = mapper.readValue(json, YV_TPT_CFARATE_Response.class);
 
             System.out.println("JSON DATA: "+response);
-           // System.out.println("======================================================================================");
-          //  System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
+            // System.out.println("======================================================================================");
+            //  System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
             for(int i=0;i<response.getYV_TPT_CFACONT().getItem().size();i++){
                 YV_TPT_CFACONT_Model model = new YV_TPT_CFACONT_Model();
                 try{
@@ -438,7 +438,7 @@ public class TestService {
                     model.setAEZET(null);
                 }
                 yv_et_cfacont_repo.save(model);
-         //       System.out.println("............First CFA data saved in repo...............");
+                //       System.out.println("............First CFA data saved in repo...............");
             }
             for(int i=0;i<response.getYV_TPT_CFARATES().getItem().size();i++) {
                 YV_TPT_CFARATES_Model model = new YV_TPT_CFARATES_Model();
@@ -517,7 +517,7 @@ public class TestService {
                     model.setAEZET(null);
                 }
                 yvEtCfaratesRepo.save(model);
-              //  System.out.println("coming out of CFA...........................");
+                //  System.out.println("coming out of CFA...........................");
             }
 
             return new ApiResponse2<>(true,"Data saved",null,200);
@@ -532,11 +532,12 @@ public class TestService {
 
 
     //============================================================================================================================================
-    public ApiResponse2 YM_PO_DET_RFC_HO_LUBES(PaymentDto dto) {
+    public ApiResponse2     YM_PO_DET_RFC_HO_LUBES(PaymentDto dto) {
 
-        System.out.println(".........inside Ho Lubes...........................");
+      //  System.out.println(".........inside Ho Lubes...........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/YM_PO_DET_RFC_HO_LUBES",
                 userName = "b2buser", password = "iocl1234", request = "";
+        // String url= "http://localhost:8085/YM_PO_DET_RFC_HO_LUBES";
         Map<Integer, String> responseMap = new HashMap<>();
 
         try {
@@ -546,35 +547,54 @@ public class TestService {
 //                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
 //                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
-
+/*            {
+                "CREATED_ON": {
+                "item": {
+                    "SIGN": "I",
+                            "OPTION": "BT",
+                            "LOW": "2022-01-01",
+                            "HIGH": "2022-06-30"
+                }
+            },
+                "DOCUMENT_TYPE": {
+                "item": "ZP"
+            },
+                "MATERIAL_TYPE": {
+                "item": "LUBE"
+            },
+                "PLANT": {
+                "item": {
+                    "WERKS": "4221"
+                }
+            }}*/
             String jsonInputString = "{\n" +
                     "    \"CREATED_ON\": {\n" +
                     "        \"item\" : {\n" +
-                    "            \"SIGN\": \"I\",\n" +
-                    "            \"OPTION\": \"BT\",\n" +
-                    "            \"LOW\": \"2022-01-01\",\n" +
-                    "            \"HIGH\": \"2022-06-30\"\n" +
+                    "            \"SIGN\":" + dto.getSIGN() +"," +
+                    "            \"OPTION\":" + dto.getOPTION() +"," +
+                    "            \"LOW\":" + dto.getLOW() +"," +
+                    "            \"HIGH\":" + dto.getHIGH() +
                     "        }\n" +
                     "    },\n" +
                     "    \"DOCUMENT_TYPE\":\n" +
                     "    {\n" +
-                    "        \"item\": \"ZP\"\n" +
+                    "        \"item\":" + dto.getDOCUMENT_TYPE() +
                     "    },\n" +
                     "    \"MATERIAL_TYPE\":\n" +
                     "    {\n" +
-                    "        \"item\" :\"LUBE\"\n" +
+                    "        \"item\" :" + dto.getMATERIAL_TYPE() +
                     "    },\n" +
                     "    \"PLANT\":\n" +
                     "    {\n" +
                     "        \"item\": {\n" +
-                    "            \"WERKS\":\"4221\"\n" +
+                    "            \"WERKS\":"+ dto.getWERKS() +"\n" +
                     "        }\n" +
                     "    }\n" +
                     "}";
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
+                System.out.println("HO Lubes json-------------------"+inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -725,7 +745,7 @@ public class TestService {
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
 
-}
+    }
 
     public ApiResponse2 YV_EXCHG_RATE(PaymentDto dto) {
 
@@ -742,8 +762,8 @@ public class TestService {
 
 
             String jsonInputString = "{\n" +
-                    "    \"I_FROM_DATE\": \"2022-01-01\",\n" +
-                    "    \"I_TO_DATE\": \"2022-09-30\"\n" +
+                    "    \"I_FROM_DATE\":" +dto.getI_FROM_DATE()+"," +"\n"+
+                    "    \"I_TO_DATE\":" +dto.getI_TO_DATE()+"\n" +
                     "  }";
             try {
 
@@ -832,7 +852,6 @@ public class TestService {
                 }
                 yv_exchg_rate_et_exch_rate_repo.save(model);
             }
-            System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
@@ -852,16 +871,16 @@ public class TestService {
 //                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
 //                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
-
+System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
             String jsonInputString = "{\n" +
-                    "    \"I_FROM_DATE\": \"2022-01-05\",\n" +
-                    "    \"I_TO_DATE\": \"2022-01-05\",\n" +
-                    "    \"I_DIVISION\": \"LU\"\n" +
+                    "    \"I_FROM_DATE\":" + dto.getI_FROM_DATE()+","+"\n" +
+                    "    \"I_TO_DATE\":" + dto.getI_TO_DATE()+","+"\n" +
+                    "    \"I_DIVISION\":" +dto.getI_DIVISION()+"\n" +
                     "  }";
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
+
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -1177,9 +1196,10 @@ public class TestService {
 
 
             String jsonInputString = "{\n" +
-                    "    \"I_ALL_BOMM\": \"X\",\n" +
-                    "    \"I_MAINBOM_ONLY\": \"\"\n" +
-                    "  }";
+                    "    \"I_ALL_BOMM\":" + dto.getI_ALL_BOMM() + ",\n" +
+                    "    \"I_MAINBOM_ONLY\":" + dto.getI_MAINBOM_ONLY() + "\n" +
+                    "}";
+
             try {
 
                 inputString = new StringEntity(jsonInputString);
@@ -1320,10 +1340,9 @@ public class TestService {
 //                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
 
-            String jsonInputString ="  {\n" +
-                    "    \"I_FKDAT\": \"2022-07-01\"\n" +
-                    "     \n" +
-                    "  }";
+            String jsonInputString = "{\n" +
+                    "    \"I_FKDAT\": \"" + dto.getI_FKDAT() + "\"\n" +
+                    "}";
             try {
 
                 inputString = new StringEntity(jsonInputString);
@@ -1381,7 +1400,7 @@ public class TestService {
                     model.setTPLST_HIGH(null);
 
                 }
-             yv_contract_rates_i_tplst_repo.save(model);
+                yv_contract_rates_i_tplst_repo.save(model);
             }
             for(int i=0;i<response.getI_BUKRS().getItem().size();i++){
                 YV_CONTRACT_RATE_I_BURKS model = new YV_CONTRACT_RATE_I_BURKS();
@@ -1548,24 +1567,24 @@ public class TestService {
 
 
             String jsonInputString = "{\n" +
-                    "    \"VAL_DATE\": \"2022-01-01\",\n" +
+                    "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
-                    "      \"item\": {\n" +
-                    "        \"MANDT\": \"310\",\n" +
-                    "        \"BUKRS\": \"4000\"\n" +
-                    "      }\n" +
+                    "        \"item\": {\n" +
+                    "            \"MANDT\": " + dto.getMANDT() + ",\n" +
+                    "            \"BUKRS\": " + dto.getBUKRS() + "\n" +
+                    "        }\n" +
                     "    },\n" +
                     "    \"I_WERKS\": {\n" +
-                    "      \"item\": {\n" +
-                    "        \"MANDT\": \"310\",\n" +
-                    "        \"WERKS\": \"4221\"\n" +
-                    "      }\n" +
+                    "        \"item\": {\n" +
+                    "            \"MANDT\": " + dto.getMANDT() + ",\n" +
+                    "            \"WERKS\": " + dto.getWERKS() + "\n" +
+                    "        }\n" +
                     "    }\n" +
-                    "  }";
+                    "}";
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
+                System.out.println("Custrtd json Data......................"+inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -1617,7 +1636,7 @@ public class TestService {
                 try {
                     model.setRTDSTATUS(response.getI_TPT_CUSTRTD().getItem().get(i).getRTDSTATUS());
                 } catch (NullPointerException e) {
-                               model.setRTDSTATUS(null);
+                    model.setRTDSTATUS(null);
 
                 }
                 try {

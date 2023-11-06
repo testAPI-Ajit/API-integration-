@@ -34,6 +34,15 @@ public class PaymentDto {
     private String I_ALL_BOMM;
     @JsonProperty("I_MAINBOM_ONLY")
     private String I_MAINBOM_ONLY;
+    @JsonProperty("I_FKDAT")
+    private String I_FKDAT;
+    @JsonProperty("VAL_DATE")
+    private String VAL_DATE;
     @JsonProperty("I_AS_ON_DATE")
     private String I_AS_ON_DATE;
+    @JsonProperty("MANDT")
+    private String MANDT;
+    @JsonProperty("BUKRS")
+    private String BUKRS;
+
 }
