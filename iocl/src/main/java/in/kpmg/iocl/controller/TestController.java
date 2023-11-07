@@ -22,7 +22,7 @@ public class TestController {
     @PostMapping("/fetch-details")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ApiResponse2 fetchdetails(@RequestBody PaymentDto dto) {
-     //   System.out.println("Inside controller");
+     //  System.out.println("Inside controller...........................");
         if(dto.getService()==1)
         return service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
         else if(dto.getService()==2)
