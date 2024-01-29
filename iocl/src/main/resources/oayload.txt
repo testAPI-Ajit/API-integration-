@@ -1,0 +1,20 @@
+{
+    "CREATED_ON": {
+      "item": {
+        "SIGN": "I",
+        "OPTION": "BT",
+        "LOW": "2023-01-01",
+        "HIGH": "2023-12-31"
+      }
+    },
+    "DOCUMENT_TYPE": {
+      "item": "ZQ"
+    },
+    "MATERIAL_TYPE": {
+      "item": "ADDT"
+    },
+    "PLANT": {
+      "item": {
+        "WERKS": "3237"
+      }
+    }}
