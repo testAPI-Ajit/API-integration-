@@ -41,4 +41,6 @@ public class YM_PO_DET_RFC_HO_LUBES_Model {
     private String MENGE;
     private String MEINS;
     private String BSTME;
+    @Column(name = "wrbtr")
+    private String WRBTR;
 }

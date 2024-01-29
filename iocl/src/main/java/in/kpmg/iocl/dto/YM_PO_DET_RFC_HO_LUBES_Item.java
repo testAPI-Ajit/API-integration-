@@ -8,6 +8,10 @@ public class YM_PO_DET_RFC_HO_LUBES_Item {
 
     @JsonProperty("BSART")
     private String BSART;
+
+    @JsonProperty("WRBTR")
+    private String WRBTR;
+
     @JsonProperty("BSTYP")
     private String BSTYP;
     @JsonProperty("EBELN")

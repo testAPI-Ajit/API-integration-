@@ -1,14 +1,45 @@
 package in.kpmg.iocl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import in.kpmg.iocl.controller.TestController;
+import in.kpmg.iocl.dto.ApiResponse2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class IoclApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IoclApplication.class, args);
-	}
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(IoclApplication.class, args);
+
+        TestController fetchController = context.getBean(TestController.class);
+
+        List<ApiResponse2> fetchResult = null;
+
+        try {
+            fetchResult = fetchController.fetchdetails();
+            System.out.println("execution response:: \n " + fetchResult);
+        } catch (Exception e) {
+            System.out.println("Exception in Main of iocl.. " + e.getMessage());
+        }
+
+        if (fetchResult != null) {
+            stopApplication(context);
+        } else {
+            System.out.println("response is null from APIs execution...!!");
+        }
+    }
+
+    private static void stopApplication(ApplicationContext context) {
+
+        SpringApplication.exit(context);
+        System.out.println("Application closed..!!");
+    }
 
 }
+
+
+

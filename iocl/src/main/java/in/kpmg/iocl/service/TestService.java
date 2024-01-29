@@ -150,9 +150,9 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
+//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
+//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -172,7 +172,7 @@ public class TestService {
 //            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 //            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
-            System.out.println("Test" + json);
+//            System.out.println("Test" + json);
 
             for(int i=0;i<response.getET_CAR_GRP().getItem().size();i++){
                 YV_LU_PCK_RATE_ET_CAR_GRP model = new YV_LU_PCK_RATE_ET_CAR_GRP();
@@ -327,9 +327,9 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
+//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
+//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -349,7 +349,7 @@ public class TestService {
 
             YV_TPT_CFARATE_Response response = mapper.readValue(json, YV_TPT_CFARATE_Response.class);
 
-            System.out.println("JSON DATA: "+response);
+//            System.out.println("JSON DATA: "+response);
             // System.out.println("======================================================================================");
             //  System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
             for(int i=0;i<response.getYV_TPT_CFACONT().getItem().size();i++){
@@ -603,9 +603,9 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
+//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
+//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -633,6 +633,12 @@ public class TestService {
                     model.setBSART(response.getOUTPUT().getItem().get(i).getBSART());
                 } catch (NullPointerException e) {
                     model.setBSART(null);
+
+                }
+                try {
+                    model.setWRBTR(response.getOUTPUT().getItem().get(i).getWRBTR());
+                } catch (NullPointerException e) {
+                    model.setWRBTR(null);
 
                 }
                 try {
@@ -738,7 +744,7 @@ public class TestService {
                 ym_po_det_rfc_ho_lubes_repo.save(model);
                 System.out.println(".......................ho lubes method 1 saved...........................");
             }
-            System.out.println("Test" + json);
+//            System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
@@ -777,9 +783,9 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
+//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
+//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -859,7 +865,8 @@ public class TestService {
         }
     }
 
-    public ApiResponse2 YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
+    public ApiResponse2
+    YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -916,6 +923,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
                 } catch (NullPointerException e) {
                     model.setMATNR(null);
                 }
+
                 try {
                     model.setMAKTX(response.getE_MARA().getItem().get(i).getMAKTX());
                 } catch (NullPointerException e) {
@@ -1319,7 +1327,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
                 y_lubebom_dnld_repo.save(model);
 
             }
-            System.out.println("Test" + json);
+           // System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
