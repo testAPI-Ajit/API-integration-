@@ -163,6 +163,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT,false);
@@ -337,6 +341,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             //    System.out.println("Input Data is............:"+json);
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -611,6 +619,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -774,9 +786,7 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -790,6 +800,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -856,6 +870,11 @@ public class TestService {
         }
     }
 
+    private boolean finderror(String json) {
+        boolean isFound = json.contains("Data not found");
+        return isFound;
+    }
+
     public ApiResponse2
     YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS",
@@ -869,7 +888,7 @@ public class TestService {
             String jsonInputString = "{\n" +
                     "    \"I_FROM_DATE\":" + dto.getI_FROM_DATE()+","+"\n" +
                     "    \"I_TO_DATE\":" + dto.getI_TO_DATE()+","+"\n" +
-                    "    \"I_DIVISION\":[" +dto.getI_DIVISION()+"]\n" +
+                    "    \"I_DIVISION\":" +dto.getI_DIVISION()+"\n" +
                     "  }";
             try {
 
@@ -897,6 +916,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -1212,6 +1235,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -1347,6 +1374,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
@@ -1542,13 +1573,13 @@ public class TestService {
                     "    \"I_BUKRS\": {\n" +
                     "        \"item\": {\n" +
                     "            \"MANDT\": " + dto.getMANDT() + ",\n" +
-                    "            \"BUKRS\": ["+dto.getBUKRS()+"]\" "+
+                    "            \"BUKRS\": "+dto.getBUKRS()+"\" "+
                     "        }\n" +
                     "    },\n" +
                     "    \"I_WERKS\": {\n" +
                     "        \"item\": {\n" +
                     "            \"MANDT\": " + dto.getMANDT() + ",\n" +
-                    "            \"WERKS\": [" + dto.getWERKS() + "]\n" +
+                    "            \"WERKS\": " + dto.getWERKS() + "\n" +
                     "        }\n" +
                     "    }\n" +
                     "}";
@@ -1577,6 +1608,10 @@ public class TestService {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(finderror(json)){
+                System.out.print("No data   ------------>"+jsonInputString);
+                return new ApiResponse2<>(false,"No Data found",null,400);
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
