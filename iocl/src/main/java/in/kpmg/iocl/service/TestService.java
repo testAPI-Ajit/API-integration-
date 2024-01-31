@@ -871,6 +871,9 @@ public class TestService {
     }
 
     private boolean finderror(String json) {
+        if(json.length()<20){
+            return true;
+        }
         boolean isFound = json.contains("Data not found");
         return isFound;
     }
