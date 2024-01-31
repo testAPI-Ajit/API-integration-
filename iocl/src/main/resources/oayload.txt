@@ -3,18 +3,18 @@
       "item": {
         "SIGN": "I",
         "OPTION": "BT",
-        "LOW": "2023-01-01",
-        "HIGH": "2023-12-31"
+        "LOW": "2022-01-01",
+        "HIGH": "2022-12-31"
       }
     },
     "DOCUMENT_TYPE": {
-      "item": "ZQ"
+      "item": ["MK","WK","ZQ","ZP"]
     },
     "MATERIAL_TYPE": {
       "item": "ADDT"
     },
     "PLANT": {
       "item": {
-        "WERKS": "3237"
+        "WERKS": ["2136","1140"]
       }
     }}
