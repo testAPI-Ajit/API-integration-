@@ -49,7 +49,6 @@ public class Testing {
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -58,9 +57,7 @@ public class Testing {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -74,7 +71,6 @@ public class Testing {
             int statusCode = response1.getStatusLine().getStatusCode();
 
             String json = EntityUtils.toString(response1.getEntity());
-            System.out.println("Test" + json);
             responseMap.put(response1.getStatusLine().getStatusCode(), json);
 
         } catch (Exception e) {

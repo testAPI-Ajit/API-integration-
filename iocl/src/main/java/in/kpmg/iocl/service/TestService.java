@@ -141,7 +141,6 @@ public class TestService {
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -150,9 +149,7 @@ public class TestService {
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-//            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-//            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -296,7 +293,6 @@ public class TestService {
 
     //==============================================YV_TPT_CFARATES==============================================================================
     public ApiResponse2 YV_TPT_CFARATES(PaymentDto dto) {
-        //  System.out.println("..................Cfa_rates_starts.........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CFARATES",
                 userName = "b2buser", password = "iocl1234", request = "";
         //  System.out.println("......CFA Data url................"+url);
@@ -318,7 +314,6 @@ public class TestService {
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -349,9 +344,6 @@ public class TestService {
 
             YV_TPT_CFARATE_Response response = mapper.readValue(json, YV_TPT_CFARATE_Response.class);
 
-//            System.out.println("JSON DATA: "+response);
-            // System.out.println("======================================================================================");
-            //  System.out.println("Testtttting Response"+response.getYV_TPT_CFACONT().getItem());
             for(int i=0;i<response.getYV_TPT_CFACONT().getItem().size();i++){
                 YV_TPT_CFACONT_Model model = new YV_TPT_CFACONT_Model();
                 try{
@@ -594,7 +586,7 @@ public class TestService {
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println("HO Lubes json-------------------"+inputString);
+//                System.out.println("HO Lubes json-------------------"+inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -774,7 +766,6 @@ public class TestService {
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -874,15 +865,11 @@ public class TestService {
         try {
 
             StringEntity inputString = null;
-//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
-//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
-//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
 
-System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
             String jsonInputString = "{\n" +
                     "    \"I_FROM_DATE\":" + dto.getI_FROM_DATE()+","+"\n" +
                     "    \"I_TO_DATE\":" + dto.getI_TO_DATE()+","+"\n" +
-                    "    \"I_DIVISION\":" +dto.getI_DIVISION()+"\n" +
+                    "    \"I_DIVISION\":[" +dto.getI_DIVISION()+"]\n" +
                     "  }";
             try {
 
@@ -896,9 +883,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -1182,7 +1167,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
                 materialMasterEmarmRepo.save(model);
 
             }
-            System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
@@ -1198,11 +1182,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
         try {
 
             StringEntity inputString = null;
-//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
-//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
-//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
-
-
             String jsonInputString = "{\n" +
                     "    \"I_ALL_BOMM\":" + dto.getI_ALL_BOMM() + ",\n" +
                     "    \"I_MAINBOM_ONLY\":" + dto.getI_MAINBOM_ONLY() + "\n" +
@@ -1211,7 +1190,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -1220,9 +1198,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -1327,7 +1303,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
                 y_lubebom_dnld_repo.save(model);
 
             }
-           // System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
@@ -1343,10 +1318,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
         try {
 
             StringEntity inputString = null;
-//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
-//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
-//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
-
 
             String jsonInputString = "{\n" +
                     "    \"I_FKDAT\": \"" + dto.getI_FKDAT() + "\"\n" +
@@ -1354,7 +1325,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println(inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -1363,9 +1333,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -1384,7 +1352,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             YV_CONTRACT_RATES_Resp response = mapper.readValue(json, YV_CONTRACT_RATES_Resp.class);
-            System.out.println("Test" + json);
             for(int i=0;i<response.getI_TPLST().getItem().size();i++){
                 YV_CONTRACT_RATES_I_TPLST model = new YV_CONTRACT_RATES_I_TPLST();
                 try {
@@ -1569,30 +1536,25 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
         try {
 
             StringEntity inputString = null;
-//            String jsonInputString1 = "{\r\n" + "    \"I_FROM_DATE\": \"2022-01-05\",\r\n"
-//                    + "    \"I_TO_DATE\": \"2022-01-30\",\r\n" + "    \"I_WERKS\": {\r\n" + "      \"item\": {\r\n"
-//                    + "        \"WERKS\": \"4136\"\r\n" + "      }\r\n" + "    }\r\n" + "  }";
-
 
             String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "        \"item\": {\n" +
                     "            \"MANDT\": " + dto.getMANDT() + ",\n" +
-                    "            \"BUKRS\": " + dto.getBUKRS() + "\n" +
+                    "            \"BUKRS\": ["+dto.getBUKRS()+"]\" "+
                     "        }\n" +
                     "    },\n" +
                     "    \"I_WERKS\": {\n" +
                     "        \"item\": {\n" +
                     "            \"MANDT\": " + dto.getMANDT() + ",\n" +
-                    "            \"WERKS\": " + dto.getWERKS() + "\n" +
+                    "            \"WERKS\": [" + dto.getWERKS() + "]\n" +
                     "        }\n" +
                     "    }\n" +
                     "}";
             try {
 
                 inputString = new StringEntity(jsonInputString);
-                System.out.println("Custrtd json Data......................"+inputString);
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
@@ -1601,9 +1563,7 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
 
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
-            System.out.println("Encoded String = " + new String(encodedAuth));
             String authHeader = "Basic " + new String(encodedAuth);
-            System.out.println("Auth String =" + authHeader);
             postRequest.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
 
             inputString.setContentType("application/json");
@@ -1805,7 +1765,6 @@ System.out.println("Hi------Material------------------"+dto.getI_DIVISION());
                 i_tpt_custrtd_i_werks_repo.save(model);
 
             }
-//            System.out.println("Test" + json);
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();

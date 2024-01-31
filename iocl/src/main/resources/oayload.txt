@@ -8,13 +8,31 @@
       }
     },
     "DOCUMENT_TYPE": {
-      "item": ["MK","WK","ZQ","ZP"]
+      "item": []
     },
     "MATERIAL_TYPE": {
-      "item": "ADDT"
+      "item": []
     },
     "PLANT": {
       "item": {
-        "WERKS": ["2136","1140"]
+        "WERKS": []
       }
     }}
+
+
+
+{
+    "VAL_DATE": "2022-01-01",
+    "I_BUKRS": {
+      "item": {
+        "MANDT": "310",
+        "BUKRS": []
+      }
+    },
+    "I_WERKS": {
+      "item": {
+        "MANDT": "310",
+        "WERKS": []
+      }
+    }
+  }
