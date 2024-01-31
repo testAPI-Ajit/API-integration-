@@ -165,7 +165,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
@@ -343,7 +343,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             //    System.out.println("Input Data is............:"+json);
             ObjectMapper mapper = new ObjectMapper();
@@ -621,7 +621,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -802,7 +802,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -918,7 +918,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -1237,7 +1237,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -1376,7 +1376,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -1610,7 +1610,7 @@ public class TestService {
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
-                return new ApiResponse2<>(false,"No Data found",null,400);
+                return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
