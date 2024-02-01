@@ -22,6 +22,8 @@ public class MaterialMasterEmvkeModel {
     @UpdateTimestamp
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
+
+    private String division_code;
     private String MATNR;
     private String  VKORG;
     private String  VTWEG;

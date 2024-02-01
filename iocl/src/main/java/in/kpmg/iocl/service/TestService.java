@@ -1005,6 +1005,7 @@ public class TestService {
                     model.setLAEDA(null);
 
                 }
+                model.setDivision_code(dto.getI_DIVISION());
                 materialMasterEmaraRepo.save(model);
             }
             for(int i=0;i<response.getE_MARC().getItem().size();i++){
@@ -1039,6 +1040,7 @@ public class TestService {
                     model.setABFAC(null);
 
                 }
+                model.setDivision_code(dto.getI_DIVISION());
                 materialMasterEmarcRepo.save(model);
 
 
@@ -1108,6 +1110,7 @@ public class TestService {
                     model.setDWERK(null);
 
                 }
+                model.setDivision_code(dto.getI_DIVISION());
                 materialMasterEmvkeRepo.save(model);
             }
             for(int i=0;i<response.getE_MBEW().getItem().size();i++){
@@ -1148,12 +1151,13 @@ public class TestService {
                     model.setSTPRS(null);
 
                 }
+                model.setDivision_code(dto.getI_DIVISION());
                 materialMasterEmbewRepo.save(model);
 
             }
             for(int i=0;i<response.getE_MARM().getItem().size();i++){
                 MaterialMasterEmarmModel model = new MaterialMasterEmarmModel();
-
+model.setDivision_code(dto.getI_DIVISION());
                 try {
                     model.setMATNR(response.getE_MARM().getItem().get(i).getMATNR());
                 } catch (NullPointerException e) {
@@ -1588,7 +1592,6 @@ public class TestService {
                     "    }\n" +
                     "  }";
 
-            System.out.print(test);
             String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
@@ -1604,7 +1607,6 @@ public class TestService {
                     "        }\n" +
                     "    }\n" +
                     "}";
-            System.out.print(jsonInputString);
             try {
 
                 inputString = new StringEntity(jsonInputString);
@@ -1635,6 +1637,15 @@ public class TestService {
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
+//                .featuresToDisable(MapperFeature.ALLOW_COERCION_OF_SCALARS)
+//                    .featuresToDisable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
+//                    .featuresToDisable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT)
+//                    .featuresToDisable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+//                    .featuresToDisable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
+//                    .featuresToEnable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+//                    .featuresToEnable(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES)
+            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT,true);
+            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,true);
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);

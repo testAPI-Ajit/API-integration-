@@ -23,6 +23,7 @@ public class MaterialMasterEmarmModel {
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
 
+    private String division_code;
 
     private String MATNR;
     private String UMREN;

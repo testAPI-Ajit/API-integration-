@@ -23,6 +23,7 @@ public class MaterialMasterEmaraModel {
     private String NTGEW;
     private String TRAGR;
     private String ERSDA;
+    private String division_code;
     private String LAEDA;
 
     @Id
