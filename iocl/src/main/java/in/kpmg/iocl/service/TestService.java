@@ -1571,11 +1571,29 @@ public class TestService {
 
             StringEntity inputString = null;
 
+
+            String test = "{\n" +
+                    "    \"VAL_DATE\": \""+dto.getVAL_DATE()+"\",\n" +
+                    "    \"I_BUKRS\": {\n" +
+                    "      \"item\": {\n" +
+                    "        \"MANDT\": \""+dto.getMANDT()+"\",\n" +
+                    "        \"BUKRS\": \""+dto.getBUKRS()+"\"\n" +
+                    "      }\n" +
+                    "    },\n" +
+                    "    \"I_WERKS\": {\n" +
+                    "      \"item\": {\n" +
+                    "        \"MANDT\": \""+dto.getMANDT()+"\",\n" +
+                    "        \"WERKS\": \""+dto.getWERKS()+"\"\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  }";
+
+            System.out.print(test);
             String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "        \"item\": {\n" +
-                    "            \"MANDT\": " + dto.getMANDT() + ",\n" +
+                    "            \"MANDT\": \"" + dto.getMANDT() + ",\n" +
                     "            \"BUKRS\": "+dto.getBUKRS()+"\" "+
                     "        }\n" +
                     "    },\n" +
@@ -1586,6 +1604,7 @@ public class TestService {
                     "        }\n" +
                     "    }\n" +
                     "}";
+            System.out.print(jsonInputString);
             try {
 
                 inputString = new StringEntity(jsonInputString);
