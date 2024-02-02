@@ -36,3 +36,7 @@
       }
     }
   }
+
+
+  com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to `in.kpmg.iocl.dto.YV_LU_PCK_Rate_ET_CAR_GRP` value (but could if coercion was enabled using `CoercionConfig`)
+   at [Source: (String)"{"ET_CAR_GRP":"","ET_TRANSRATE":"","E_MSG":""}"; line: 1, column: 15] (through reference chain: in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response["ET_CAR_GRP"])

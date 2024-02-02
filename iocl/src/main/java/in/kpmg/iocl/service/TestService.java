@@ -1576,7 +1576,7 @@ model.setDivision_code(dto.getI_DIVISION());
             StringEntity inputString = null;
 
 
-            String test = "{\n" +
+            String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": \""+dto.getVAL_DATE()+"\",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "      \"item\": {\n" +
@@ -1592,7 +1592,7 @@ model.setDivision_code(dto.getI_DIVISION());
                     "    }\n" +
                     "  }";
 
-            String jsonInputString = "{\n" +
+            String test = "{\n" +
                     "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "        \"item\": {\n" +
