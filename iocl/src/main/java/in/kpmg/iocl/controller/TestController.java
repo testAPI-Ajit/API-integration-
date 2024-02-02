@@ -46,7 +46,9 @@ public class TestController {
 //    }
 
 
-   // @GetMapping("/fetch-details")
+    //financial year = pck_rate
+
+
     public List<ApiResponse2> fetchdetails() {
         ApiResponse2 response = null;
         boolean isError = false;
@@ -60,7 +62,7 @@ public class TestController {
                     case 1: {
                         PaymentDto dto = new PaymentDto();
                         dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-                        dto.setI_TO_DATE(LocalDate.now().toString());
+                        dto.setI_TO_DATE("2023-12-31");
                             for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
@@ -69,18 +71,14 @@ public class TestController {
                         break;
                     }
                     case 2: {
-
-
                         PaymentDto dto = new PaymentDto();
                         dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
-                        dto.setI_TO_DATE(LocalDate.now().toString());
+                        dto.setI_TO_DATE("2023-12-31");
+//                        dto.setI_TO_DATE(LocalDate.now().toString());
                             response = service.YV_EXCHG_RATE(dto);
-
                         System.out.println("Executed " + serviceNumber);
-
                         break;
                     }
-
                     case 3: {
                         PaymentDto dto = new PaymentDto();
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
@@ -89,13 +87,10 @@ public class TestController {
                         dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setDOCUMENT_TYPE(environment.getProperty("document_type_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
-
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
                         List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK");
-
                         List<String> werks = Arrays.asList("1140", "1146","2136", "2138","3136", "3236","3237", "3266", "3267",
                                 "4136","4466","3240","4196","21HS","32HS","41HS");
-
                         for(int i=0;i<documentType.size();i++){
                             dto.setDOCUMENT_TYPE(documentType.get(i));
                             for(int j=0;j<materialType.size();j++){
@@ -106,7 +101,6 @@ public class TestController {
                                 }
                             }
                         }
-
                         System.out.println("Executed " + serviceNumber);
 
                         break;
@@ -114,10 +108,7 @@ public class TestController {
                     case 4: {
                         PaymentDto dto = new PaymentDto();
                         dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
-                        // dto.setI_TO_DATE(LocalDate.now().toString());
-//                        dto.setI_TO_DATE(environment.getProperty("I_TO_DATE"));
                         dto.setI_TO_DATE(LocalDate.now().toString());
-
                         for(int i=0;i<WERKS.size();i++) {
                             dto.setWERKS(WERKS.get(i));
 
@@ -140,13 +131,6 @@ public class TestController {
                         PaymentDto dto = new PaymentDto();
                         dto.setVAL_DATE(environment.getProperty("VAL_DATE_YV_TPT_CUSTRTD"));
                         dto.setMANDT(environment.getProperty("MANDT_YV_TPT_CUSTRTD"));
-//                        dto.setBUKRS(environment.getProperty("BUKRS_YV_TPT_CUSTRTD"));
-
-
-//                        dto.setBUKRS("\"0005\",\"0015\",\"0100\",\"1000\",\"1100\",\"1200\",\"1300\",\"1400\",\"1500\",\"2000\",\"2100\",\"2200\",\"2300\",\"2400\",\"2500\",\"3000\",\"3100\",\"3200\",\"3300\",\"4000\",\"4100\",\"4200\",\"4300\",\"4400\",\"7200\",\"7500\",\"9000\",\"9010\",\"9020\",\"9030\",\"9040\",\"9050\",\"9060\",\"9070\",\"9100\",\"9200\",\"9201\",\"9210\",\"9220\",\"9230\",\"9240\",\"9250\",\"9260\",\"9270\",\"9280\",\"9290\",\"9291\",\"9310\",\"9320\",\"9330\",\"9340\",\"9400\",\"9500\",\"9600\",\"9610\",\"9700\",\"9750\",\"9760\",\"9800\",\"9850\",\"9860\",\"9870\",\"9880\",\"9910\",\"9930\",\"RRPL\"");
-//                        dto.setWERKS(environment.getProperty("WERKS_YV_TPT_CUSTRTD"));
-//                        dto.setWERKS("\"2251\",\"5516\",\"5517\",\"5526\",\"5534\",\"5549\",\"5552\",\"5554\",\"5577\",\"5578\",\"5587\",\"5607\",\"5608\",\"5610\",\"5638\",\"5644\",\"5651\",\"5652\",\"5680\",\"5700\",\"5702\",\"734\",\"5746\",\"5747\",\"5748\",\"5750\",\"5765\",\"5766\",\"5768\",\"5810\",\"5811\",\"5825\",\"5841\",\"5849\",\"5862\",\"5863\",\"5864\",\"5870\",\"7F01\",\"7F06\",\"1140\",\"1146\",\"2136\",\"2138\",\"3136\",\"3236\",\"3237\",\"3266\",\"3267\",\"4136\",\"4466\",\"3240\",\"4196\",\"21HS\",\"32HS\",\"41HS\"]");
-
                         for(int i=0;i<BUKRS.size();i++){
                             dto.setBUKRS(BUKRS.get(i));
                             for(int j=0;j< WERKS.size();j++){
@@ -154,7 +138,6 @@ public class TestController {
                                 response = service.YV_TPT_CUSTRTD(dto);
                             }
                         }
-//                        response = service.YV_TPT_CUSTRTD(dto);
                         System.out.println("Executed " + serviceNumber);
 
                         break;

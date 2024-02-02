@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -637,6 +638,12 @@ public class TestService {
                     model.setBSART(response.getOUTPUT().getItem().get(i).getBSART());
                 } catch (NullPointerException e) {
                     model.setBSART(null);
+
+                }
+                try {
+                    model.setMENGE(response.getOUTPUT().getItem().get(i).getMENGE());
+                } catch (NullPointerException e) {
+                    model.setMENGE(null);
 
                 }
                 try {
@@ -1576,7 +1583,7 @@ model.setDivision_code(dto.getI_DIVISION());
             StringEntity inputString = null;
 
 
-            String jsonInputString = "{\n" +
+            String test = "{\n" +
                     "    \"VAL_DATE\": \""+dto.getVAL_DATE()+"\",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "      \"item\": {\n" +
@@ -1592,7 +1599,7 @@ model.setDivision_code(dto.getI_DIVISION());
                     "    }\n" +
                     "  }";
 
-            String test = "{\n" +
+            String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "        \"item\": {\n" +
@@ -1630,6 +1637,10 @@ model.setDivision_code(dto.getI_DIVISION());
             HttpResponse response1 = closeableHttpClient.execute(postRequest);
 
             int statusCode = response1.getStatusLine().getStatusCode();
+            if(statusCode != 200){
+                System.out.print("Error from API");
+                return new ApiResponse2<>(true,"No Data found",null,400);
+            }
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
@@ -1637,19 +1648,18 @@ model.setDivision_code(dto.getI_DIVISION());
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
-//                .featuresToDisable(MapperFeature.ALLOW_COERCION_OF_SCALARS)
-//                    .featuresToDisable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
-//                    .featuresToDisable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT)
-//                    .featuresToDisable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-//                    .featuresToDisable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
-//                    .featuresToEnable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
-//                    .featuresToEnable(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES)
             mapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT,true);
             mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,true);
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapper.configure(DeserializationFeature.ACCEPT_FLOAT_AS_INT, false);
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             YV_TPT_CUSTRTD_Response response = mapper.readValue(json, YV_TPT_CUSTRTD_Response.class);
+
+            Date yesterday = getMeYesterday();
+            if(response.getI_TPT_CUSTRTD()==null ){
+                System.out.print("No data   ------------>"+response);
+                return new ApiResponse2<>(true,"No Data found",null,400);
+            }
             for(int i=0;i<response.getI_TPT_CUSTRTD().getItem().size();i++){
                 I_TPT_CUSTRTD_Model model = new I_TPT_CUSTRTD_Model();
                 try {
@@ -1838,5 +1848,8 @@ model.setDivision_code(dto.getI_DIVISION());
             e.printStackTrace();
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
+    }
+    private Date getMeYesterday(){
+        return new Date(System.currentTimeMillis()-24*60*60*1000);
     }
 }
