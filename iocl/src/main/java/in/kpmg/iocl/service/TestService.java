@@ -1583,7 +1583,7 @@ model.setDivision_code(dto.getI_DIVISION());
             StringEntity inputString = null;
 
 
-            String test = "{\n" +
+            String jsonInputString = "{\n" +
                     "    \"VAL_DATE\": \""+dto.getVAL_DATE()+"\",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "      \"item\": {\n" +
@@ -1599,21 +1599,7 @@ model.setDivision_code(dto.getI_DIVISION());
                     "    }\n" +
                     "  }";
 
-            String jsonInputString = "{\n" +
-                    "    \"VAL_DATE\": " + dto.getVAL_DATE() + ",\n" +
-                    "    \"I_BUKRS\": {\n" +
-                    "        \"item\": {\n" +
-                    "            \"MANDT\": \"" + dto.getMANDT() + ",\n" +
-                    "            \"BUKRS\": "+dto.getBUKRS()+"\" "+
-                    "        }\n" +
-                    "    },\n" +
-                    "    \"I_WERKS\": {\n" +
-                    "        \"item\": {\n" +
-                    "            \"MANDT\": " + dto.getMANDT() + ",\n" +
-                    "            \"WERKS\": " + dto.getWERKS() + "\n" +
-                    "        }\n" +
-                    "    }\n" +
-                    "}";
+
             try {
 
                 inputString = new StringEntity(jsonInputString);
@@ -1637,12 +1623,12 @@ model.setDivision_code(dto.getI_DIVISION());
             HttpResponse response1 = closeableHttpClient.execute(postRequest);
 
             int statusCode = response1.getStatusLine().getStatusCode();
-            if(statusCode != 200){
-                System.out.print("Error from API");
-                return new ApiResponse2<>(true,"No Data found",null,400);
-            }
 
             String json = EntityUtils.toString(response1.getEntity());
+            if(statusCode != 200){
+                System.out.print("Error from API------------->"+json);
+                return new ApiResponse2<>(true,"No Data found",null,400);
+            }
             if(finderror(json)){
                 System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
