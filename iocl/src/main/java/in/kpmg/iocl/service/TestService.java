@@ -32,6 +32,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -1641,7 +1642,10 @@ model.setDivision_code(dto.getI_DIVISION());
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             YV_TPT_CUSTRTD_Response response = mapper.readValue(json, YV_TPT_CUSTRTD_Response.class);
 
-            Date yesterday = getMeYesterday();
+
+            LocalDate currentDate = LocalDate.now();
+            LocalDate yesterdayDate = currentDate.minusDays(1);
+            String yesterday = yesterdayDate.toString();
             if(response.getI_TPT_CUSTRTD()==null ){
                 System.out.print("No data   ------------>"+response);
                 return new ApiResponse2<>(true,"No Data found",null,400);
@@ -1835,7 +1839,5 @@ model.setDivision_code(dto.getI_DIVISION());
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
-    private Date getMeYesterday(){
-        return new Date(System.currentTimeMillis()-24*60*60*1000);
-    }
+
 }
