@@ -14,7 +14,7 @@ public class MaterialMasterEmaraItem {
     @JsonProperty("GROES")
     private String GROES;
     @JsonProperty("WRKST")
-    private Integer WRKST;
+    private String WRKST;
     @JsonProperty("FERTH")
     private String FERTH;
     @JsonProperty("NORMT")

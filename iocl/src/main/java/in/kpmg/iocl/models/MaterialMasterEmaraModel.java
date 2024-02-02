@@ -15,7 +15,7 @@ public class MaterialMasterEmaraModel {
     private String MAKTX;
     private Integer BISM;
     private String GROES;
-    private Integer WRKST;
+    private String WRKST;
     private String FERTH;
     private String NORMT;
     private String MEINS;

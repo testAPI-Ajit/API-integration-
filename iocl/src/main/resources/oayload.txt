@@ -1,47 +1,58 @@
-
-delete from public.test_duplicates where ctid in (
-select ctid from (SELECT ctid, ROW_NUMBER() OVER (PARTITION BY name, year ORDER BY name) cnt
-FROM public.test_duplicates ) table1 where cnt>1)
-
-{
-    "CREATED_ON": {
-      "item": {
-        "SIGN": "I",
-        "OPTION": "BT",
-        "LOW": "2022-01-01",
-        "HIGH": "2022-12-31"
-      }
-    },
-    "DOCUMENT_TYPE": {
-      "item": []
-    },
-    "MATERIAL_TYPE": {
-      "item": []
-    },
-    "PLANT": {
-      "item": {
-        "WERKS": []
-      }
-    }}
+delete from pricing_tool.i_tpt_custrtd where ctid in (
+select ctid from (SELECT ctid, ROW_NUMBER() OVER (PARTITION BY
+ aedat , aenam, aezet , approval_ref ,begda,change_ref,
+  destcluster,dist_h,dist_hh,dist_p,endda,erdat,ernam,erzet,fdz_ind,
+	geo_rtd,kunwe,levi_oneway,levi_twoway,mandt,rtdstatus,ship_state,
+	shpt_bottom_load,shpt_state,vehcap_ind,vstel
+  ORDER BY mandt) cnt
+FROM pricing_tool.i_tpt_custrtd ) table1 where cnt>1)
 
 
+delete from pricing_tool.i_tpt_custrtd_i_bukrs where ctid in (
+select ctid from (SELECT ctid, ROW_NUMBER() OVER (PARTITION BY
+bukrs,mandt,tplst_high,tplst_low,tplst_option,tplst_sign,high,low,option,sign order by mandt) cnt
+				  FROM pricing_tool.i_tpt_custrtd_i_bukrs ) table1 where cnt>1)
 
-{
-    "VAL_DATE": "2022-01-01",
-    "I_BUKRS": {
-      "item": {
-        "MANDT": "310",
-        "BUKRS": []
-      }
-    },
-    "I_WERKS": {
-      "item": {
-        "MANDT": "310",
-        "WERKS": []
-      }
-    }
-  }
+delete from pricing_tool.i_tpt_custrtd_i_werks where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+mandt,werks order by mandt)cnt from pricing_tool.i_tpt_custrtd_i_werks) table1
+where cnt>1)
+
+delete from pricing_tool.yv_et_cfarates where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+aedat,aenam,aezet,erdat,ernam,erzet,mandt,outsidestate,rateuom,remarks,slab_from_km,
+	slab_to_km,vstel,yytenderno	order by id desc)cnt from pricing_tool.yv_et_cfarates) table1
+where cnt>1)
+
+delete from pricing_tool.yv_et_cfacont where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+aedat,aenam,aezet,end_date,erdat,ernam,erzet,extn_dt1,extn_dt2,extn_dt3
+,extn_ref1,extn_ref2,extn_ref3,fixed_charges,handling_rate,hsd_basedate,
+hsd_baserate,mandt,remarks,start_date, trans_uom,vstel,yytenderno,yyvendor order by id desc)cnt from pricing_tool.yv_et_cfacont) table1
+where cnt>1)
+
+delete from pricing_tool.yv_contract_rates_o_report where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+bukrs,capcluster,cap_desc,destcluster,dest_desc,final_uom,final_uomkm,
+	kunwe,matkl,name1,name2,rateapp_desc,remarks,rtdcluster,rtd_desc
+,tplst ,vstel,yytenderno  order by id desc)cnt from pricing_tool.yv_contract_rates_o_report) table1
+where cnt>1)
+
+delete from pricing_tool.y_lubebom_dnld_e_bom where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+ comnm,datuv, idnrk,matnr,meins,menge,mtart,posnr,stlal,stlkn,stlnr,stprs,verpr
+,werks		 order by werks)cnt from pricing_tool.y_lubebom_dnld_e_bom) table1
+where cnt>1)
+
+delete from pricing_tool.ym_po_det_rfc_ho_lubes where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+aedat,belnr,bsart,bstme,bstyp,buzei,ebeln,ebelp,gjahr,konnr,ktpnr,loekz,matkl,
+matnr,meins,menge,mtart,waers,werks, wrbtr order by werks)cnt from pricing_tool.ym_po_det_rfc_ho_lubes) table1
+where cnt>1)
 
 
-  com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to `in.kpmg.iocl.dto.YV_LU_PCK_Rate_ET_CAR_GRP` value (but could if coercion was enabled using `CoercionConfig`)
-   at [Source: (String)"{"ET_CAR_GRP":"","ET_TRANSRATE":"","E_MSG":""}"; line: 1, column: 15] (through reference chain: in.kpmg.iocl.dto.YV_LU_PCK_Rate_Response["ET_CAR_GRP"])
+
+
+
+
+
