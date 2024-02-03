@@ -1634,10 +1634,6 @@ public class TestService {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             YV_TPT_CUSTRTD_Response response = mapper.readValue(json, YV_TPT_CUSTRTD_Response.class);
 
-
-            LocalDate currentDate = LocalDate.now();
-            LocalDate yesterdayDate = currentDate.minusDays(1);
-            String yesterday = yesterdayDate.toString();
             if(response.getI_TPT_CUSTRTD()!=null ){
                 for(int i=0;i<response.getI_TPT_CUSTRTD().getItem().size();i++){
                     I_TPT_CUSTRTD_Model model = new I_TPT_CUSTRTD_Model();

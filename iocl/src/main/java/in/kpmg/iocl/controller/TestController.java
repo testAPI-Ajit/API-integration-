@@ -75,9 +75,14 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                 switch (serviceNumber) {
                     case 1: {
                         PaymentDto dto = new PaymentDto();
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-                        dto.setI_TO_DATE("2023-12-31");
-                            for(int i=0;i<divisionCodes.size();i++) {
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
+//                        dto.setI_TO_DATE("2023-12-31");
+
+                        LocalDate currentDate = LocalDate.now();
+                        LocalDate yesterdayDate = currentDate.minusDays(1);
+                        dto.setI_FROM_DATE(currentDate.toString());
+                        dto.setI_TO_DATE(yesterdayDate.toString());
+                        for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
