@@ -50,6 +50,64 @@ aedat,belnr,bsart,bstme,bstyp,buzei,ebeln,ebelp,gjahr,konnr,ktpnr,loekz,matkl,
 matnr,meins,menge,mtart,waers,werks, wrbtr order by werks)cnt from pricing_tool.ym_po_det_rfc_ho_lubes) table1
 where cnt>1)
 
+delete from pricing_tool.yv_exchg_rate_et_exch_rate where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+fcurr,ffact,gdatu,kurst,mandt,tcurr,tfact,ukurs order by mandt)cnt from pricing_tool.yv_exchg_rate_et_exch_rate ) table1
+where cnt>1)
+
+delete from pricing_tool.yv_material_master_all_views_e_mara where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+bism,brgew,ersda,ferth,groes,laeda,maktx,matnr,meins,normt,ntgew,tragr,division_code,wrkst order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_mara) table1
+where cnt>1)
+
+delete from pricing_tool.yv_material_master_all_views_e_marm where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+matnr,meinh,meins,seprtr,umren,umrez,mantr,division_code order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_marm) table1
+where cnt>1)
+
+delete from pricing_tool.yv_material_master_all_views_e_mvke where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+dwerk,kondm,kondmt,ktgrm,ktgrmt,matnr,mvgr1,mvgr2,mvgr3,vkorg,vtweg,division_code	order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_mvke) table1
+where cnt>1)
+
+delete from pricing_tool.yvb_exchange_rate where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+fcurr,ffact,gdatu,kurst,mandt,tcurr,tfact,ukurs	order by id desc)cnt from pricing_tool.yvb_exchange_rate) table1
+where cnt>1)
+
+
+
+delete from pricing_tool.yv_material_master_all_views_e_mbew where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+bklas,bwkey,matnr,stprs,verpr,vprsv,division_code	order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_mbew) table1
+where cnt>1)
+
+delete from pricing_tool.yv_material_master_all_views_e_marc where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+abfac,matnr,umrsl,uomgr,werks,division_code order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_marc) table1
+where cnt>1)
+
+delete from pricing_tool.yv_material_master_all_views_e_marm where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+matnr,meinh,meins,seprtr,umren,umrez,mantr,division_code order by id desc)cnt from pricing_tool.yv_material_master_all_views_e_marm) table1
+where cnt>1)
+
+
+delete from pricing_tool.yv_lu_pck_rate_et_car_grp where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+begda,endda,mandt,werks,wgt_from,yycarton_grp,wgt_to,yyrate_percent order by mandt)cnt from pricing_tool.yv_lu_pck_rate_et_car_grp) table1
+where cnt>1)
+
+delete from pricing_tool.yv_lu_pck_rate_et_transrate where ctid in (
+select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY
+begda,bzirk,endda,kunnr,mandt,provisional,remarks,tu_number,veh_type,
+werks,yybase_rate,yyrate_applic   order by mandt)cnt from pricing_tool.yv_lu_pck_rate_et_transrate) table1
+where cnt>1)
+
+
+
+
+
 
 
 
