@@ -1,7 +1,9 @@
 package in.kpmg.iocl.controller;
 
 import in.kpmg.iocl.dto.ApiResponse2;
+import in.kpmg.iocl.dto.MaterialMasterEmarm;
 import in.kpmg.iocl.dto.PaymentDto;
+import in.kpmg.iocl.repository.*;
 import in.kpmg.iocl.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -47,7 +49,19 @@ public class TestController {
 
 
     //financial year = pck_rate
+@Autowired MaterialMasterEmarmRepo materialMasterEmarmRepo;
 
+@Autowired
+MaterialMasterEmaraRepo materialMasterEmaraRepo;
+
+@Autowired
+MaterialMasterEmarcRepo materialMasterEmarcRepo;
+
+@Autowired
+MaterialMasterEmvkeRepo materialMasterEmvkeRepo;
+
+@Autowired
+MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
     public List<ApiResponse2> fetchdetails() {
         ApiResponse2 response = null;
@@ -67,6 +81,11 @@ public class TestController {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
+                        materialMasterEmaraRepo.delete();
+                        materialMasterEmarcRepo.delete();
+                        materialMasterEmvkeRepo.delete();
+                        materialMasterEmbewRepo.delete();
+                        materialMasterEmarmRepo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
