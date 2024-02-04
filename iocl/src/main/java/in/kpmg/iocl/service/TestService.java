@@ -1805,22 +1805,7 @@ public class TestService {
                     i_tpt_custrtd_i_bukrs_repo.save(model);
                 }
             }
-            for(int i=0;i<response.getI_BUKRS().getItem().size();i++){
-                I_TPT_CUSTRTD_I_BUKRS model = new I_TPT_CUSTRTD_I_BUKRS();
-                try {
-                    model.setMANDT(response.getI_BUKRS().getItem().get(i).getMANDT());
-                } catch (NullPointerException e) {
-                    model.setMANDT(null);
 
-                }
-                try {
-                    model.setBUKRS(response.getI_BUKRS().getItem().get(i).getBUKRS());
-                } catch (NullPointerException e) {
-                    model.setBUKRS(null);
-
-                }
-                i_tpt_custrtd_i_bukrs_repo.save(model);
-            }
             if(response.getI_WERKS()!=null ){
                 for(int i=0;i<response.getI_WERKS().getItem().size();i++){
                     I_TPT_CUSTRTD_I_WERKS model = new I_TPT_CUSTRTD_I_WERKS();

@@ -49,7 +49,40 @@ public class TestController {
 
 
     //financial year = pck_rate
+
+    @Autowired
+    Y_LUBEBOM_DNLD_Repo y_lubebom_dnld_repo;
+    @Autowired
+    I_TPT_CUSTRTD_I_WERKS_Repo i_tpt_custrtd_i_werks_repo;
 @Autowired MaterialMasterEmarmRepo materialMasterEmarmRepo;
+
+    @Autowired
+    YV_CONTRACT_RATES_O_REPORT_Repo yv_contract_rates_o_report_repo;
+
+    @Autowired
+    YV_CONTRACT_RATE_I_BURKS_Repo yv_contract_rate_i_burks_repo;
+
+
+    @Autowired
+    YV_CONTRACT_RATES_I_TPLST_Repo yv_contract_rates_i_tplst_repo;
+
+
+    @Autowired
+    I_TPT_CUSTRTD_Repo i_tpt_custrtd_repo;
+
+    @Autowired
+    I_TPT_CUSTRTD_I_BUKRS_Repo i_tpt_custrtd_i_bukrs_repo;
+    @Autowired
+    YV_ET_CFACONT_Repo yv_et_cfacont_repo;
+
+    @Autowired
+    YV_ET_CFARATES_Repo yvEtCfaratesRepo;
+
+    @Autowired
+    YV_LU_PCK_RATE_ET_TRANSRATE_REPO yv_lu_pck_rate_et_transrate_repo;
+
+    @Autowired
+    YV_LU_PCK_RATE_ET_CAR_GRP_Repo yv_lu_pck_rate_et_car_grp_repo;
 
 @Autowired
 MaterialMasterEmaraRepo materialMasterEmaraRepo;
@@ -63,6 +96,12 @@ MaterialMasterEmvkeRepo materialMasterEmvkeRepo;
 @Autowired
 MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
+@Autowired
+    YV_EXCHG_RATE_ET_EXCH_RATE_Repo yv_exchg_rate_et_exch_rate_repo;
+
+    @Autowired
+    YM_PO_DET_RFC_HO_LUBES_Repo ym_po_det_rfc_ho_lubes_repo;
+
     public List<ApiResponse2> fetchdetails() {
         ApiResponse2 response = null;
         boolean isError = false;
@@ -75,13 +114,14 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                 switch (serviceNumber) {
                     case 1: {
                         PaymentDto dto = new PaymentDto();
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-                        dto.setI_TO_DATE("2023-12-31");
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
+//                        dto.setI_TO_DATE("2023-12-31");
+
 
                         LocalDate currentDate = LocalDate.now();
                         LocalDate yesterdayDate = currentDate.minusDays(1);
-//                        dto.setI_FROM_DATE(currentDate.toString());
-//                        dto.setI_TO_DATE(yesterdayDate.toString());
+                        dto.setI_FROM_DATE(yesterdayDate.toString());
+                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
@@ -94,12 +134,17 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
-                    case 2: {
+                    case 2: { LocalDate currentDate = LocalDate.now();
+                        LocalDate yesterdayDate = currentDate.minusDays(1);
                         PaymentDto dto = new PaymentDto();
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
-                        dto.setI_TO_DATE("2023-12-31");
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
+//                        dto.setI_TO_DATE("2023-12-31");
+
+                        dto.setI_FROM_DATE(yesterdayDate.toString());
+                        dto.setI_TO_DATE(currentDate.toString());
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
                             response = service.YV_EXCHG_RATE(dto);
+                            yv_exchg_rate_et_exch_rate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
@@ -125,6 +170,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 }
                             }
                         }
+                        ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
@@ -138,6 +184,9 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
                             response = service.YV_LU_PCK_RATE(dto);
                         }
+
+                        yv_lu_pck_rate_et_car_grp_repo.delete();;
+                        yv_lu_pck_rate_et_transrate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
@@ -147,7 +196,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
                         response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
-
+                        yv_et_cfacont_repo.delete();
+                                yvEtCfaratesRepo.delete();
                         break;
                     }
 
@@ -162,6 +212,11 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 response = service.YV_TPT_CUSTRTD(dto);
                             }
                         }
+                        i_tpt_custrtd_repo.delete();
+                        i_tpt_custrtd_i_bukrs_repo.delete();
+                        i_tpt_custrtd_i_werks_repo.delete();
+
+
                         System.out.println("Executed " + serviceNumber);
 
                         break;
@@ -171,6 +226,9 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
                         response = service.YV_CONTRACT_RATES(dto);
                         System.out.println("Executed " + serviceNumber);
+                        yv_contract_rates_o_report_repo.delete();
+                        yv_contract_rates_i_tplst_repo.delete();
+                        yv_contract_rate_i_burks_repo.delete();
 
                         break;
                     }
@@ -179,6 +237,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_ALL_BOMM(environment.getProperty("I_ALL_BOMM_Y_LUBEBOM_DNLD"));
                         response = service.Y_LUBEBOM_DNLD(dto);
                         System.out.println("Executed " + serviceNumber);
+                        y_lubebom_dnld_repo.delete();
 
 
                         break;
@@ -215,144 +274,4 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
         return finalResult;
     }
 
-
-//    YV_EXCHANGE_RATE
-//
-//    {
-//        "I_FROM_DATE" : "2022-01-05",
-//        "I_TO_DATE" :  "2022-01-05"
-//    }
-//    Material_master
-//    {
-//        "I_FROM_DATE" : "2022-01-05",
-//        "I_TO_DATE" :  "2022-01-05",
-//        "I_DIVISION"    :   "LU"
-//    }
-//    YV_EX
-//    {
-//        "ET_EXCH_RATE": {
-//            "item": [
-//                {
-//                    "MANDT": 310,
-//                    "KURST": "FA1",
-//                    "FCURR": "USD",
-//                    "TCURR": "INR",
-//                    "GDATU": 20220105,
-//                    "UKURS": "74.48400",
-//                    "FFACT": 0,
-//                    "TFACT": 0
-//                },
-//                {
-//                    "MANDT": 310,
-//                    "KURST": "G",
-//                    "FCURR": "CAD",
-//                    "TCURR": "INR",
-//                    "GDATU": 20220105,
-//                    "UKURS": "58.28500",
-//                    "FFACT": 0,
-//                    "TFACT": 0
-//                }
-//            ]
-//        },
-//        "E_MSG": ""
-//    }
-//
-//
-//    Material master
-//    {
-//        "E_MARA": {
-//            "item": [
-//                {
-//                    "MATNR": "AI06020",
-//                    "MAKTX": "STOCK 6020 - IMPORTED",
-//                    "BISMT": 6020,
-//                    "GROES": "",
-//                    "WRKST": 7100,
-//                    "FERTH": "",
-//                    "NORMT": "",
-//                    "MEINS": "L29",
-//                    "BRGEW": "1.000",
-//                    "NTGEW": "1.000",
-//                    "TRAGR": "0001",
-//                    "ERSDA": "2001-08-03",
-//                    "LAEDA": "2022-01-05"
-//                }
-//            ]
-//        },
-//        "E_MARC": {
-//            "item": [
-//                {
-//                    "MATNR": "AI55578",
-//                    "WERKS": "01L0",
-//                    "UOMGR": "IN3",
-//                    "UMRSL": "534B",
-//                    "ABFAC": 1.1
-//                },
-//            ]
-//        },
-//        "E_MARM": {
-//            "item": [
-//                {
-//                    "MATNR": "AI06020",
-//                    "UMREN": 1,
-//                    "MEINH": "L",
-//                    "SEPRTR": "",
-//                    "UMREZ": 1,
-//                    "MEINS": "L29"
-//                }
-//
-//            ]
-//        },
-//        "E_MBEW": {
-//            "item": [
-//                {
-//                    "MATNR": "AI55578",
-//                    "BWKEY": 3236,
-//                    "BKLAS": 1300,
-//                    "VPRSV": "V",
-//                    "VERPR": 231.41,
-//                    "STPRS": 0
-//                },
-//                {
-//                    "MATNR": "AI55578",
-//                    "BWKEY": 3237,
-//                    "BKLAS": 1300,
-//                    "VPRSV": "V",
-//                    "VERPR": 231.41,
-//                    "STPRS": 0
-//                }
-//            ]
-//        },
-//        "E_MSG": "",
-//        "E_MVKE": {
-//            "item": [
-//                {
-//                    "MATNR": "AI06020",
-//                    "VKORG": 4100,
-//                    "VTWEG": "IO",
-//                    "KONDM": "07",
-//                    "KONDMT": "BASE OILS",
-//                    "KTGRM": "AD",
-//                    "KTGRMT": "Additives",
-//                    "MVGR1": "",
-//                    "MVGR2": "",
-//                    "MVGR3": "",
-//                    "DWERK": ""
-//                },
-//                {
-//                    "MATNR": "AI55580",
-//                    "VKORG": "0100",
-//                    "VTWEG": "ST",
-//                    "KONDM": "07",
-//                    "KONDMT": "BASE OILS",
-//                    "KTGRM": "AD",
-//                    "KTGRMT": "Additives",
-//                    "MVGR1": "",
-//                    "MVGR2": "",
-//                    "MVGR3": "",
-//                    "DWERK": ""
-//                }
-//            ]
-//        }
-//    }
 }
