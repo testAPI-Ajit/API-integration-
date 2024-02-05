@@ -103,6 +103,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
     YM_PO_DET_RFC_HO_LUBES_Repo ym_po_det_rfc_ho_lubes_repo;
 
     public List<ApiResponse2> fetchdetails() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate yesterdayDate = currentDate.minusDays(1);
         ApiResponse2 response = null;
         boolean isError = false;
         List<ApiResponse2> finalResult = new ArrayList<>();
@@ -118,8 +120,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 //                        dto.setI_TO_DATE("2023-12-31");
 
 
-                        LocalDate currentDate = LocalDate.now();
-                        LocalDate yesterdayDate = currentDate.minusDays(1);
+
                         dto.setI_FROM_DATE(yesterdayDate.toString());
                         dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
@@ -134,8 +135,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
-                    case 2: { LocalDate currentDate = LocalDate.now();
-                        LocalDate yesterdayDate = currentDate.minusDays(1);
+                    case 2: {
                         PaymentDto dto = new PaymentDto();
 //                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
 //                        dto.setI_TO_DATE("2023-12-31");
@@ -152,8 +152,10 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         PaymentDto dto = new PaymentDto();
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setOPTION(environment.getProperty("option_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
+//                        dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
+//                        dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
+                        dto.setLOW(yesterdayDate.toString());
+                        dto.setHIGH(currentDate.toString());
                         dto.setDOCUMENT_TYPE(environment.getProperty("document_type_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
@@ -177,11 +179,12 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 4: {
                         PaymentDto dto = new PaymentDto();
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
-                        dto.setI_TO_DATE(LocalDate.now().toString());
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
+//                        dto.setI_TO_DATE(LocalDate.now().toString());
+                        dto.setI_FROM_DATE(yesterdayDate.toString());
+                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<WERKS.size();i++) {
                             dto.setWERKS(WERKS.get(i));
-
                             response = service.YV_LU_PCK_RATE(dto);
                         }
 
@@ -193,6 +196,9 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 5: {
                         PaymentDto dto = new PaymentDto();
+                        String date = currentDate.toString();
+
+                        date.replace("-","");
                         dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
                         response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
@@ -203,7 +209,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
                     case 6: {
                         PaymentDto dto = new PaymentDto();
-                        dto.setVAL_DATE(environment.getProperty("VAL_DATE_YV_TPT_CUSTRTD"));
+//                        dto.setVAL_DATE(environment.getProperty("VAL_DATE_YV_TPT_CUSTRTD"));
+                        dto.setVAL_DATE(currentDate.toString());
                         dto.setMANDT(environment.getProperty("MANDT_YV_TPT_CUSTRTD"));
                         for(int i=0;i<BUKRS.size();i++){
                             dto.setBUKRS(BUKRS.get(i));
@@ -223,7 +230,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 7: {
                         PaymentDto dto = new PaymentDto();
-                        dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
+//                        dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
+                        dto.setI_FKDAT(currentDate.toString());
                         response = service.YV_CONTRACT_RATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         yv_contract_rates_o_report_repo.delete();
