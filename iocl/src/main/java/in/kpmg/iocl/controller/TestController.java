@@ -128,6 +128,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
+                        System.out.print("deleting service 1 duplicates");
                         materialMasterEmaraRepo.delete();
                         materialMasterEmarcRepo.delete();
                         materialMasterEmvkeRepo.delete();
@@ -146,6 +147,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 //                        dto.setI_TO_DATE(currentDate.toString());
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
                             response = service.YV_EXCHG_RATE(dto);
+                        System.out.print("deleting service 2 duplicates");
                             yv_exchg_rate_et_exch_rate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
@@ -175,6 +177,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 }
                             }
                         }
+                        System.out.print("deleting service 3 duplicates");
                         ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
@@ -192,7 +195,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                             dto.setWERKS(WERKS.get(i));
                             response = service.YV_LU_PCK_RATE(dto);
                         }
-
+                        System.out.print("deleting service 4 duplicates");
                         yv_lu_pck_rate_et_car_grp_repo.delete();;
                         yv_lu_pck_rate_et_transrate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
@@ -209,8 +212,9 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
                         response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
+                        System.out.print("deleting service 5 duplicates");
                         yv_et_cfacont_repo.delete();
-                                yvEtCfaratesRepo.delete();
+                        yvEtCfaratesRepo.delete();
                         break;
                     }
 
@@ -228,6 +232,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 response = service.YV_TPT_CUSTRTD(dto);
                             }
                         }
+                        System.out.print("deleting service 6 duplicates");
                         i_tpt_custrtd_repo.delete();
                         i_tpt_custrtd_i_bukrs_repo.delete();
                         i_tpt_custrtd_i_werks_repo.delete();
@@ -245,6 +250,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_FKDAT(currentDate.toString());
                         response = service.YV_CONTRACT_RATES(dto);
                         System.out.println("Executed " + serviceNumber);
+                        System.out.print("deleting service 7 duplicates");
                         yv_contract_rates_o_report_repo.delete();
                         yv_contract_rates_i_tplst_repo.delete();
                         yv_contract_rate_i_burks_repo.delete();
@@ -258,6 +264,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setI_ALL_BOMM(environment.getProperty("I_ALL_BOMM_Y_LUBEBOM_DNLD"));
                         response = service.Y_LUBEBOM_DNLD(dto);
                         System.out.println("Executed " + serviceNumber);
+                        System.out.print("deleting service 8 duplicates");
                         y_lubebom_dnld_repo.delete();
 
 
