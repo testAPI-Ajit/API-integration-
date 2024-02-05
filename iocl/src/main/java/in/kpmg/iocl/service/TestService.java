@@ -40,7 +40,9 @@ import java.util.Map;
 
 @Service
 public class TestService {
-
+    LocalDate currentDate = LocalDate.now();
+    @Autowired
+    Api_Error_Logs_Repository error_logs_repository;
     @Autowired
     I_TPT_CUSTRTD_I_WERKS_Repo i_tpt_custrtd_i_werks_repo;
 
@@ -117,11 +119,12 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_LU_PCK_RATE",
                 userName = "b2buser", password = "iocl1234";
         Map<Integer, String> responseMap = new HashMap<>();
+        String jsonInputString = "";
 
         try {
 
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_FROM_DATE\" :" + dto.getI_FROM_DATE() + "," +
                     "    \"I_TO_DATE\" :" + dto.getI_TO_DATE() + "," +
                     "    \"I_WERKS\":\n" +
@@ -291,6 +294,12 @@ public class TestService {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(4);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
 
         }}
@@ -301,10 +310,10 @@ public class TestService {
                 userName = "b2buser", password = "iocl1234", request = "";
         //  System.out.println("......CFA Data url................"+url);
         Map<Integer, String> responseMap = new HashMap<>();
-
+        String jsonInputString = "";
         try {
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_AS_ON_DATE\"   :" + dto.getI_AS_ON_DATE()+ "\n" +
                     "}";
             try {
@@ -516,6 +525,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(5);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
@@ -531,9 +546,10 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/YM_PO_DET_RFC_HO_LUBES",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
+        String jsonInputString = "";
         try {
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"CREATED_ON\": {\n" +
                     "        \"item\" : {\n" +
                     "            \"SIGN\":" + dto.getSIGN() +"," +
@@ -724,6 +740,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(3);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
 
@@ -734,11 +756,11 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_EXCHG_RATE",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
-
+        String jsonInputString = "";
         try {
 
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_FROM_DATE\":" +dto.getI_FROM_DATE()+"," +"\n"+
                     "    \"I_TO_DATE\":" +dto.getI_TO_DATE()+"\n" +
                     "  }";
@@ -835,6 +857,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(2);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
@@ -851,12 +879,12 @@ public class TestService {
     YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS",
                 userName = "b2buser", password = "iocl1234", request = "";
-
+        String jsonInputString = "";
         try {
 
             StringEntity inputString = null;
 
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_FROM_DATE\":" + dto.getI_FROM_DATE()+","+"\n" +
                     "    \"I_TO_DATE\":" + dto.getI_TO_DATE()+","+"\n" +
                     "    \"I_DIVISION\":" +dto.getI_DIVISION()+"\n" +
@@ -1187,6 +1215,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(1);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
@@ -1195,11 +1229,11 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/Y_LUBEBOM_DNLD",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
-
+        String jsonInputString ="";
         try {
 
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_ALL_BOMM\":" + dto.getI_ALL_BOMM() + ",\n" +
                     "    \"I_MAINBOM_ONLY\":" + dto.getI_MAINBOM_ONLY() + "\n" +
                     "}";
@@ -1332,6 +1366,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(8);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
@@ -1340,12 +1380,12 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_CONTRACT_RATES",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
-
+        String jsonInputString ="";
         try {
 
             StringEntity inputString = null;
 
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"I_FKDAT\": \"" + dto.getI_FKDAT() + "\"\n" +
                     "}";
             try {
@@ -1562,6 +1602,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(7);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
@@ -1573,12 +1619,12 @@ public class TestService {
         byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
         String authHeader = "Basic " + new String(encodedAuth);
         Map<Integer, String> responseMap = new HashMap<>();
-
+        String jsonInputString = "";
 
         try {
 
             StringEntity inputString = null;
-            String jsonInputString = "{\n" +
+             jsonInputString = "{\n" +
                     "    \"VAL_DATE\": \""+dto.getVAL_DATE()+"\",\n" +
                     "    \"I_BUKRS\": {\n" +
                     "      \"item\": {\n" +
@@ -1829,6 +1875,12 @@ public class TestService {
             return new ApiResponse2<>(true,"Data saved",null,200);
         }catch (Exception e){
             e.printStackTrace();
+            Api_Error_Logs logs = new Api_Error_Logs();
+            logs.setService(6);
+            logs.setDate(currentDate.toString());
+            logs.setInput(jsonInputString);
+            logs.setError_msg(e.getMessage());
+            error_logs_repository.save(logs);
             return new ApiResponse2<>(false,"Internal Server Error",e.getMessage(),500);
         }
     }
