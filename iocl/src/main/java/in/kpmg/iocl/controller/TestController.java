@@ -116,6 +116,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                 switch (serviceNumber) {
                     case 1: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 1 Controller");
                         dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
                         dto.setI_TO_DATE("2023-12-31");
 
@@ -137,6 +138,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 2: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 2 Controller");
                         dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
                         dto.setI_TO_DATE("2023-12-31");
 
@@ -150,6 +152,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 3: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 3 Controller");
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setOPTION(environment.getProperty("option_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
@@ -179,6 +182,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 4: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 4 Controller");
+
 //                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
                         dto.setI_FROM_DATE(yesterdayDate.toString());
@@ -196,6 +201,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 5: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 5 Controller");
+
                         String date = currentDate.toString();
 
                         String test =date.replace("-","");
@@ -209,6 +216,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
                     case 6: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 6 Controller");
+
 //                        dto.setVAL_DATE(environment.getProperty("VAL_DATE_YV_TPT_CUSTRTD"));
                         dto.setVAL_DATE(currentDate.toString());
                         dto.setMANDT(environment.getProperty("MANDT_YV_TPT_CUSTRTD"));
@@ -230,6 +239,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     }
                     case 7: {
                         PaymentDto dto = new PaymentDto();
+                        System.out.print("Inside Service 7 Controller");
+
 //                        dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
                         dto.setI_FKDAT(currentDate.toString());
                         response = service.YV_CONTRACT_RATES(dto);
@@ -241,6 +252,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         break;
                     }
                     case 8: {
+                        System.out.print("Inside Service 8 Controller");
 
                         PaymentDto dto = new PaymentDto();
                         dto.setI_ALL_BOMM(environment.getProperty("I_ALL_BOMM_Y_LUBEBOM_DNLD"));
