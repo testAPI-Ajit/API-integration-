@@ -117,13 +117,13 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     case 1: {
                         PaymentDto dto = new PaymentDto();
                         System.out.print("Inside Service 1 Controller");
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-                        dto.setI_TO_DATE("2023-12-31");
-
-
-
-//                        dto.setI_FROM_DATE(yesterdayDate.toString());
-//                        dto.setI_TO_DATE(currentDate.toString());
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
+//                        dto.setI_TO_DATE("2023-12-31");
+//
+//
+//
+                        dto.setI_FROM_DATE(yesterdayDate.toString());
+                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
@@ -140,11 +140,11 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                     case 2: {
                         PaymentDto dto = new PaymentDto();
                         System.out.print("Inside Service 2 Controller");
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
-                        dto.setI_TO_DATE("2023-12-31");
-
-//                        dto.setI_FROM_DATE(yesterdayDate.toString());
-//                        dto.setI_TO_DATE(currentDate.toString());
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
+//                        dto.setI_TO_DATE("2023-12-31");
+//
+                        dto.setI_FROM_DATE(yesterdayDate.toString());
+                        dto.setI_TO_DATE(currentDate.toString());
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
                             response = service.YV_EXCHG_RATE(dto);
                         System.out.print("deleting service 2 duplicates");
@@ -157,10 +157,10 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         System.out.print("Inside Service 3 Controller");
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setOPTION(environment.getProperty("option_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
-//                        dto.setLOW(yesterdayDate.toString());
-//                        dto.setHIGH(currentDate.toString());
+//                        dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
+//                        dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
+                        dto.setLOW(yesterdayDate.toString());
+                        dto.setHIGH(currentDate.toString());
                         dto.setDOCUMENT_TYPE(environment.getProperty("document_type_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
@@ -209,7 +209,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         String date = currentDate.toString();
 
                         String test =date.replace("-","");
-                        dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
+                        dto.setI_AS_ON_DATE(test);
+//                        dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
                         response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         System.out.print("deleting service 5 duplicates");
