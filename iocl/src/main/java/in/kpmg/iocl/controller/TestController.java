@@ -119,19 +119,22 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
             try {
                 switch (serviceNumber) {
                     case 1: {
-                        PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(1).get();
-                        if(config.getFromDate().equals("Yesterday"))
-                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+                        PaymentDto dto = new PaymentDto();try {
+                            API_type_config config = repo.findById(1).get();
+                            if (config.getFromDate().equals("Yesterday")) {
+                                dto.setI_FROM_DATE(yesterdayDate.toString());
 
-                        }else {
-                            dto.setI_FROM_DATE(config.getFromDate());
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setI_TO_DATE(currentDate.toString());
-                        }else {
-                            dto.setI_FROM_DATE(config.getToDate());
+                            } else {
+                                dto.setI_FROM_DATE(config.getFromDate());
+                            }
+                            if (config.getToDate().equals("CurrentDay")) {
+                                dto.setI_TO_DATE(currentDate.toString());
+                            } else {
+                                dto.setI_FROM_DATE(config.getToDate());
+                            }
+                        }catch (Exception e){
+                            System.out.print("Error in service 1 API config");
+                            e.printStackTrace();
                         }
 
                         System.out.print("Inside Service 1 Controller");
@@ -144,58 +147,62 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 //                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
-//                                response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
+                                response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
                         System.out.print("deleting service 1 duplicates");
-//                        materialMasterEmaraRepo.delete();
-//                        materialMasterEmarcRepo.delete();
-//                        materialMasterEmvkeRepo.delete();
-//                        materialMasterEmbewRepo.delete();
-//                        materialMasterEmarmRepo.delete();
+                        materialMasterEmaraRepo.delete();
+                        materialMasterEmarcRepo.delete();
+                        materialMasterEmvkeRepo.delete();
+                        materialMasterEmbewRepo.delete();
+                        materialMasterEmarmRepo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
                     case 2: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(2).get();
-                        if(config.getFromDate().equals("Yesterday"))
-                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+                        try {
+                            API_type_config config = repo.findById(2).get();
+                            if(config.getFromDate().equals("Yesterday"))
+                            {dto.setI_FROM_DATE(yesterdayDate.toString());
 
-                        }else {
-                            dto.setI_FROM_DATE(config.getFromDate());
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setI_TO_DATE(currentDate.toString());
-                        }else {
-                            dto.setI_FROM_DATE(config.getToDate());
+                            }else {
+                                dto.setI_FROM_DATE(config.getFromDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setI_TO_DATE(currentDate.toString());
+                            }else {
+                                dto.setI_FROM_DATE(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 2 API config");
+                            e.printStackTrace();
                         }
                         System.out.print("Inside Service 2 Controller");
-//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
-//                        dto.setI_TO_DATE("2023-12-31");
-
-//                        dto.setI_FROM_DATE(yesterdayDate.toString());
-//                        dto.setI_TO_DATE(currentDate.toString());
-//                        dto.setI_TO_DATE(LocalDate.now().toString());
-//                            response = service.YV_EXCHG_RATE(dto);
+                            response = service.YV_EXCHG_RATE(dto);
                         System.out.print("deleting service 2 duplicates");
-//                            yv_exchg_rate_et_exch_rate_repo.delete();
+                            yv_exchg_rate_et_exch_rate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
                     case 3: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(3).get();
-                        if(config.getFromDate().equals("Yesterday"))
-                        {dto.setLOW(yesterdayDate.toString());
-                        }else {
-                            dto.setLOW(config.getFromDate());
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setHIGH(currentDate.toString());
-                        }else {
-                            dto.setHIGH(config.getToDate());
+                        try {
+                            API_type_config config = repo.findById(3).get();
+                            if(config.getFromDate().equals("Yesterday"))
+                            {dto.setLOW(yesterdayDate.toString());
+                            }else {
+                                dto.setLOW(config.getFromDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setHIGH(currentDate.toString());
+                            }else {
+                                dto.setHIGH(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 3 API config");
+                            e.printStackTrace();
                         }
                         System.out.print("Inside Service 3 Controller");
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
@@ -213,60 +220,66 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 dto.setMATERIAL_TYPE(materialType.get(j));
                                 for(int k=0;k<werks.size();k++){
                                     dto.setWERKS(werks.get(k));
-//                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
+                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
                                 }
                             }
                         }
                         System.out.print("deleting service 3 duplicates");
-//                        ym_po_det_rfc_ho_lubes_repo.delete();
+                        ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 4: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(4).get();
-                        if(config.getFromDate().equals("Yesterday"))
-                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+                        try {
+                            API_type_config config = repo.findById(4).get();
+                            if(config.getFromDate().equals("Yesterday"))
+                            {dto.setI_FROM_DATE(yesterdayDate.toString());
 
-                        }else {
-                            dto.setI_FROM_DATE(config.getFromDate());
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setI_TO_DATE(currentDate.toString());
-                        }else {
-                            dto.setI_FROM_DATE(config.getToDate());
+                            }else {
+                                dto.setI_FROM_DATE(config.getFromDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setI_TO_DATE(currentDate.toString());
+                            }else {
+                                dto.setI_FROM_DATE(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 4 API config");
+                            e.printStackTrace();
                         }
                         System.out.print("Inside Service 4 Controller");
 
-//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
-//                        dto.setI_TO_DATE(LocalDate.now().toString());
-//                        dto.setI_FROM_DATE(yesterdayDate.toString());
-//                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<WERKS.size();i++) {
                             dto.setWERKS(WERKS.get(i));
-//                            response = service.YV_LU_PCK_RATE(dto);
+                            response = service.YV_LU_PCK_RATE(dto);
                         }
                         System.out.print("deleting service 4 duplicates");
-//                        yv_lu_pck_rate_et_car_grp_repo.delete();;
-//                        yv_lu_pck_rate_et_transrate_repo.delete();
+                        yv_lu_pck_rate_et_car_grp_repo.delete();;
+                        yv_lu_pck_rate_et_transrate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 5: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(5).get();
-                        if(config.getToDate().equals("Yesterday"))
-                        {dto.setI_AS_ON_DATE(yesterdayDate.toString().replace("-",""));
+                        try {
+                            API_type_config config = repo.findById(5).get();
+                            if(config.getToDate().equals("Yesterday"))
+                            {dto.setI_AS_ON_DATE(yesterdayDate.toString().replace("-",""));
 
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setI_AS_ON_DATE(currentDate.toString().replace("-",""));
-                        }else {
-                            dto.setI_AS_ON_DATE(config.getToDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setI_AS_ON_DATE(currentDate.toString().replace("-",""));
+                            }else {
+                                dto.setI_AS_ON_DATE(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 5 API config");
+                            e.printStackTrace();
                         }
                         System.out.print("Inside Service 5 Controller");
 
@@ -274,26 +287,31 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
 //                        String test =date.replace("-","");
 //                        dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
-//                        response = service.YV_TPT_CFARATES(dto);
+                        response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         System.out.print("deleting service 5 duplicates");
-//                        yv_et_cfacont_repo.delete();
-//                        yvEtCfaratesRepo.delete();
+                        yv_et_cfacont_repo.delete();
+                        yvEtCfaratesRepo.delete();
                         break;
                     }
 
                     case 6: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(6).get();
-                        if(config.getToDate().equals("Yesterday"))
-                        {dto.setVAL_DATE(yesterdayDate.toString());
+                        try {
+                            API_type_config config = repo.findById(6).get();
+                            if(config.getToDate().equals("Yesterday"))
+                            {dto.setVAL_DATE(yesterdayDate.toString());
 
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setVAL_DATE(currentDate.toString());
-                        }else {
-                            dto.setVAL_DATE(config.getToDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setVAL_DATE(currentDate.toString());
+                            }else {
+                                dto.setVAL_DATE(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 6 API config");
+                            e.printStackTrace();
                         }
 
                         System.out.print("Inside Service 6 Controller");
@@ -305,40 +323,45 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                             dto.setBUKRS(BUKRS.get(i));
                             for(int j=0;j< WERKS.size();j++){
                                 dto.setWERKS(WERKS.get(j));
-//                                response = service.YV_TPT_CUSTRTD(dto);
+                                response = service.YV_TPT_CUSTRTD(dto);
                             }
                         }
                         System.out.print("deleting service 6 duplicates");
 //                        i_tpt_custrtd_repo.delete();
-//                        i_tpt_custrtd_i_bukrs_repo.delete();
-//                        i_tpt_custrtd_i_werks_repo.delete();
+                        i_tpt_custrtd_i_bukrs_repo.delete();
+                        i_tpt_custrtd_i_werks_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 7: {
                         PaymentDto dto = new PaymentDto();
-                        API_type_config config = repo.findById(7).get();
-                        if(config.getToDate().equals("Yesterday"))
-                        {dto.setI_FKDAT(yesterdayDate.toString());
+                        try {
+                            API_type_config config = repo.findById(7).get();
+                            if(config.getToDate().equals("Yesterday"))
+                            {dto.setI_FKDAT(yesterdayDate.toString());
 
-                        }
-                        if(config.getToDate().equals("CurrentDay"))
-                        {
-                            dto.setI_FKDAT(currentDate.toString());
-                        }else {
-                            dto.setI_FKDAT(config.getToDate());
+                            }
+                            if(config.getToDate().equals("CurrentDay"))
+                            {
+                                dto.setI_FKDAT(currentDate.toString());
+                            }else {
+                                dto.setI_FKDAT(config.getToDate());
+                            }
+                        } catch (Exception e) {
+                            System.out.print("Error in service 6 API config");
+                            e.printStackTrace();
                         }
                         System.out.print("Inside Service 7 Controller");
 
 //                        dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
 //                        dto.setI_FKDAT(currentDate.toString());
-//                        response = service.YV_CONTRACT_RATES(dto);
+                        response = service.YV_CONTRACT_RATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         System.out.print("deleting service 7 duplicates");
-//                        yv_contract_rates_o_report_repo.delete();
-//                        yv_contract_rates_i_tplst_repo.delete();
-//                        yv_contract_rate_i_burks_repo.delete();
+                        yv_contract_rates_o_report_repo.delete();
+                        yv_contract_rates_i_tplst_repo.delete();
+                        yv_contract_rate_i_burks_repo.delete();
 
                         break;
                     }
