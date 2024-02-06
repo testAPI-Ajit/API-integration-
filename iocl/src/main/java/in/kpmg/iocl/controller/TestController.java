@@ -3,6 +3,7 @@ package in.kpmg.iocl.controller;
 import in.kpmg.iocl.dto.ApiResponse2;
 import in.kpmg.iocl.dto.MaterialMasterEmarm;
 import in.kpmg.iocl.dto.PaymentDto;
+import in.kpmg.iocl.models.API_type_config;
 import in.kpmg.iocl.repository.*;
 import in.kpmg.iocl.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +103,9 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
     @Autowired
     YM_PO_DET_RFC_HO_LUBES_Repo ym_po_det_rfc_ho_lubes_repo;
 
+    @Autowired
+    API_type_config_repo repo;
+
     public List<ApiResponse2> fetchdetails() {
         LocalDate currentDate = LocalDate.now();
         LocalDate yesterdayDate = currentDate.minusDays(1);
@@ -111,56 +115,92 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
         List<String> divisionCodes = Arrays.asList("LD","LN","LP","LS","LU","MH","SO","AL","AV","CG","FO");
         List<String> WERKS = Arrays.asList("2251","5516","5517","5526","5534","5549","5552","5554","5577","5578","5587","5607","5608","5610","5638","5644","5651","5652","5680","5700","5702","734","5746","5747","5748","5750","5765","5766","5768","5810","5811","5825","5841","5849","5862","5863","5864","5870","7F01","7F06","1140","1146","2136","2138","3136","3236","3237","3266","3267","4136","4466","3240","4196","21HS","32HS","41HS");
         List<String> BUKRS = Arrays.asList("0005","0015","0100","1000","1100","1200","1300","1400","1500","2000","2100","2200","2300","2400","2500","3000","3100","3200","3300","4000","4100","4200","4300","4400","7200","7500","9000","9010","9020","9030","9040","9050","9060","9070","9100","9200","9201","9210","9220","9230","9240","9250","9260","9270","9280","9290","9291","9310","9320","9330","9340","9400","9500","9600","9610","9700","9750","9760","9800","9850","9860","9870","9880","9910","9930","RRPL");
-        for (int serviceNumber = 1; serviceNumber <= 8; serviceNumber++) {
+        for (int serviceNumber = 1; serviceNumber <= 7; serviceNumber++) {
             try {
                 switch (serviceNumber) {
                     case 1: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(1).get();
+                        if(config.getFromDate().equals("Yesterday"))
+                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+
+                        }else {
+                            dto.setI_FROM_DATE(config.getFromDate());
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setI_TO_DATE(currentDate.toString());
+                        }else {
+                            dto.setI_FROM_DATE(config.getToDate());
+                        }
+
                         System.out.print("Inside Service 1 Controller");
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-                        dto.setI_TO_DATE("2023-12-31");
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
+//                        dto.setI_TO_DATE("2023-12-31");
 
 
 
-//                        dto.setI_FROM_DATE(yesterdayDate.toString());
+//
 //                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
-                                response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
+//                                response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
                         System.out.print("deleting service 1 duplicates");
-                        materialMasterEmaraRepo.delete();
-                        materialMasterEmarcRepo.delete();
-                        materialMasterEmvkeRepo.delete();
-                        materialMasterEmbewRepo.delete();
-                        materialMasterEmarmRepo.delete();
+//                        materialMasterEmaraRepo.delete();
+//                        materialMasterEmarcRepo.delete();
+//                        materialMasterEmvkeRepo.delete();
+//                        materialMasterEmbewRepo.delete();
+//                        materialMasterEmarmRepo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
                     case 2: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(2).get();
+                        if(config.getFromDate().equals("Yesterday"))
+                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+
+                        }else {
+                            dto.setI_FROM_DATE(config.getFromDate());
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setI_TO_DATE(currentDate.toString());
+                        }else {
+                            dto.setI_FROM_DATE(config.getToDate());
+                        }
                         System.out.print("Inside Service 2 Controller");
-                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
-                        dto.setI_TO_DATE("2023-12-31");
+//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_EXCHG_RATE"));
+//                        dto.setI_TO_DATE("2023-12-31");
 
 //                        dto.setI_FROM_DATE(yesterdayDate.toString());
 //                        dto.setI_TO_DATE(currentDate.toString());
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
-                            response = service.YV_EXCHG_RATE(dto);
+//                            response = service.YV_EXCHG_RATE(dto);
                         System.out.print("deleting service 2 duplicates");
-                            yv_exchg_rate_et_exch_rate_repo.delete();
+//                            yv_exchg_rate_et_exch_rate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
                     case 3: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(3).get();
+                        if(config.getFromDate().equals("Yesterday"))
+                        {dto.setLOW(yesterdayDate.toString());
+                        }else {
+                            dto.setLOW(config.getFromDate());
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setHIGH(currentDate.toString());
+                        }else {
+                            dto.setHIGH(config.getToDate());
+                        }
                         System.out.print("Inside Service 3 Controller");
                         dto.setSIGN(environment.getProperty("sign_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setOPTION(environment.getProperty("option_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setLOW(environment.getProperty("low_YM_PO_DET_RFC_HO_LUBES"));
-                        dto.setHIGH(environment.getProperty("high_YM_PO_DET_RFC_HO_LUBES"));
-//                        dto.setLOW(yesterdayDate.toString());
-//                        dto.setHIGH(currentDate.toString());
+//
                         dto.setDOCUMENT_TYPE(environment.getProperty("document_type_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
@@ -173,87 +213,132 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 dto.setMATERIAL_TYPE(materialType.get(j));
                                 for(int k=0;k<werks.size();k++){
                                     dto.setWERKS(werks.get(k));
-                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
+//                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
                                 }
                             }
                         }
                         System.out.print("deleting service 3 duplicates");
-                        ym_po_det_rfc_ho_lubes_repo.delete();
+//                        ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 4: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(4).get();
+                        if(config.getFromDate().equals("Yesterday"))
+                        {dto.setI_FROM_DATE(yesterdayDate.toString());
+
+                        }else {
+                            dto.setI_FROM_DATE(config.getFromDate());
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setI_TO_DATE(currentDate.toString());
+                        }else {
+                            dto.setI_FROM_DATE(config.getToDate());
+                        }
                         System.out.print("Inside Service 4 Controller");
 
 //                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE"));
 //                        dto.setI_TO_DATE(LocalDate.now().toString());
-                        dto.setI_FROM_DATE(yesterdayDate.toString());
-                        dto.setI_TO_DATE(currentDate.toString());
+//                        dto.setI_FROM_DATE(yesterdayDate.toString());
+//                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<WERKS.size();i++) {
                             dto.setWERKS(WERKS.get(i));
-                            response = service.YV_LU_PCK_RATE(dto);
+//                            response = service.YV_LU_PCK_RATE(dto);
                         }
                         System.out.print("deleting service 4 duplicates");
-                        yv_lu_pck_rate_et_car_grp_repo.delete();;
-                        yv_lu_pck_rate_et_transrate_repo.delete();
+//                        yv_lu_pck_rate_et_car_grp_repo.delete();;
+//                        yv_lu_pck_rate_et_transrate_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 5: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(5).get();
+                        if(config.getToDate().equals("Yesterday"))
+                        {dto.setI_AS_ON_DATE(yesterdayDate.toString().replace("-",""));
+
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setI_AS_ON_DATE(currentDate.toString().replace("-",""));
+                        }else {
+                            dto.setI_AS_ON_DATE(config.getToDate());
+                        }
                         System.out.print("Inside Service 5 Controller");
 
                         String date = currentDate.toString();
 
-                        String test =date.replace("-","");
-                        dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
-                        response = service.YV_TPT_CFARATES(dto);
+//                        String test =date.replace("-","");
+//                        dto.setI_AS_ON_DATE(environment.getProperty("I_AS_ON_DATE_YV_TPT_CFARATES"));
+//                        response = service.YV_TPT_CFARATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         System.out.print("deleting service 5 duplicates");
-                        yv_et_cfacont_repo.delete();
-                        yvEtCfaratesRepo.delete();
+//                        yv_et_cfacont_repo.delete();
+//                        yvEtCfaratesRepo.delete();
                         break;
                     }
 
                     case 6: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(6).get();
+                        if(config.getToDate().equals("Yesterday"))
+                        {dto.setVAL_DATE(yesterdayDate.toString());
+
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setVAL_DATE(currentDate.toString());
+                        }else {
+                            dto.setVAL_DATE(config.getToDate());
+                        }
+
                         System.out.print("Inside Service 6 Controller");
 
 //                        dto.setVAL_DATE(environment.getProperty("VAL_DATE_YV_TPT_CUSTRTD"));
-                        dto.setVAL_DATE(currentDate.toString());
+//                        dto.setVAL_DATE(currentDate.toString());
                         dto.setMANDT(environment.getProperty("MANDT_YV_TPT_CUSTRTD"));
                         for(int i=0;i<BUKRS.size();i++){
                             dto.setBUKRS(BUKRS.get(i));
                             for(int j=0;j< WERKS.size();j++){
                                 dto.setWERKS(WERKS.get(j));
-                                response = service.YV_TPT_CUSTRTD(dto);
+//                                response = service.YV_TPT_CUSTRTD(dto);
                             }
                         }
                         System.out.print("deleting service 6 duplicates");
-                        i_tpt_custrtd_repo.delete();
-                        i_tpt_custrtd_i_bukrs_repo.delete();
-                        i_tpt_custrtd_i_werks_repo.delete();
-
-
+//                        i_tpt_custrtd_repo.delete();
+//                        i_tpt_custrtd_i_bukrs_repo.delete();
+//                        i_tpt_custrtd_i_werks_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
                     }
                     case 7: {
                         PaymentDto dto = new PaymentDto();
+                        API_type_config config = repo.findById(7).get();
+                        if(config.getToDate().equals("Yesterday"))
+                        {dto.setI_FKDAT(yesterdayDate.toString());
+
+                        }
+                        if(config.getToDate().equals("CurrentDay"))
+                        {
+                            dto.setI_FKDAT(currentDate.toString());
+                        }else {
+                            dto.setI_FKDAT(config.getToDate());
+                        }
                         System.out.print("Inside Service 7 Controller");
 
 //                        dto.setI_FKDAT(environment.getProperty("I_FKDAT_YV_CONTRACT_RATES"));
-                        dto.setI_FKDAT(currentDate.toString());
-                        response = service.YV_CONTRACT_RATES(dto);
+//                        dto.setI_FKDAT(currentDate.toString());
+//                        response = service.YV_CONTRACT_RATES(dto);
                         System.out.println("Executed " + serviceNumber);
                         System.out.print("deleting service 7 duplicates");
-                        yv_contract_rates_o_report_repo.delete();
-                        yv_contract_rates_i_tplst_repo.delete();
-                        yv_contract_rate_i_burks_repo.delete();
+//                        yv_contract_rates_o_report_repo.delete();
+//                        yv_contract_rates_i_tplst_repo.delete();
+//                        yv_contract_rate_i_burks_repo.delete();
 
                         break;
                     }

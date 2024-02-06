@@ -756,7 +756,7 @@ public class TestService {
 
     public ApiResponse2 YV_EXCHG_RATE(PaymentDto dto) {
         System.out.print("Inside Service 2");
-        String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_EXCHG_RATE",
+            String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_EXCHG_RATE",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
         String jsonInputString = "";
