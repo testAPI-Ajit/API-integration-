@@ -31,4 +31,6 @@ public class MaterialMasterEmarmModel {
     private String SEPRTR;
     private String UMREZ;
     private String MEINS;
+
+    //MANTR
 }

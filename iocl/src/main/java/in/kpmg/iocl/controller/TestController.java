@@ -212,14 +212,12 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
                         List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK");
-                        List<String> werks = Arrays.asList("1140", "1146","2136", "2138","3136", "3236","3237", "3266", "3267",
-                                "4136","4466","3240","4196","21HS","32HS","41HS");
                         for(int i=0;i<documentType.size();i++){
                             dto.setDOCUMENT_TYPE(documentType.get(i));
                             for(int j=0;j<materialType.size();j++){
                                 dto.setMATERIAL_TYPE(materialType.get(j));
-                                for(int k=0;k<werks.size();k++){
-                                    dto.setWERKS(werks.get(k));
+                                for(int k=0;k<WERKS.size();k++){
+                                    dto.setWERKS(WERKS.get(k));
                                     response = service.YM_PO_DET_RFC_HO_LUBES(dto);
                                 }
                             }
