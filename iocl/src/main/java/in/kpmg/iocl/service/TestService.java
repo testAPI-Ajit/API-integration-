@@ -175,7 +175,7 @@ public class TestService {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
-//            System.out.print(response);
+            System.out.print(response);
             if(response.getET_CAR_GRP() != null){
                 for(int i=0;i<response.getET_CAR_GRP().getItem().size();i++){
                     YV_LU_PCK_RATE_ET_CAR_GRP model = new YV_LU_PCK_RATE_ET_CAR_GRP();
@@ -226,7 +226,7 @@ public class TestService {
             }
 
             if(response.getET_TRANSRATE() != null){
-                System.out.print(response.getET_TRANSRATE());
+//                System.out.print(response.getET_TRANSRATE());
                 for(int i=0;i<response.getET_TRANSRATE().getItem().size();i++) {
                     YV_LU_PCK_RATE_ET_TRANSRATE model = new YV_LU_PCK_RATE_ET_TRANSRATE();
                     try {
@@ -934,6 +934,7 @@ public class TestService {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             MaterialMasterResponse response = mapper.readValue(json, MaterialMasterResponse.class);
 
+            System.out.println(response);
             if(response.getE_MARA() != null){
                 for(int i=0;i<response.getE_MARA().getItem().size();i++){
                     MaterialMasterEmaraModel model = new MaterialMasterEmaraModel();
