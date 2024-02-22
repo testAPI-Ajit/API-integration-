@@ -164,7 +164,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -342,7 +342,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -602,7 +602,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -792,7 +792,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -920,7 +920,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -1270,7 +1270,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -1421,7 +1421,7 @@ public class TestService {
 
             String json = EntityUtils.toString(response1.getEntity());
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
@@ -1677,7 +1677,7 @@ public class TestService {
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             if(finderror(json)){
-                System.out.print("No data   ------------>"+jsonInputString);
+//                System.out.print("No data   ------------>"+jsonInputString);
                 return new ApiResponse2<>(true,"No Data found",null,400);
             }
             ObjectMapper mapper = new ObjectMapper();
