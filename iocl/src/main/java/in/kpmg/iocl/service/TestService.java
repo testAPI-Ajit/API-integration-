@@ -116,7 +116,7 @@ public class TestService {
         return httpClient;
     }
     public ApiResponse2 YV_LU_PCK_RATE(PaymentDto dto) {
-        System.out.print("Inside Service 4");
+//        System.out.print("Inside Service 4");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_LU_PCK_RATE",
                 userName = "b2buser", password = "iocl1234";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -175,7 +175,7 @@ public class TestService {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             YV_LU_PCK_Rate_Response response = mapper.readValue(json, YV_LU_PCK_Rate_Response.class);
-            System.out.print(response);
+//            System.out.print(response);
             if(response.getET_CAR_GRP() != null){
                 for(int i=0;i<response.getET_CAR_GRP().getItem().size();i++){
                     YV_LU_PCK_RATE_ET_CAR_GRP model = new YV_LU_PCK_RATE_ET_CAR_GRP();
@@ -310,7 +310,7 @@ public class TestService {
 
     //==============================================YV_TPT_CFARATES==============================================================================
     public ApiResponse2 YV_TPT_CFARATES(PaymentDto dto) {
-        System.out.print("Inside Service 5");
+//        System.out.print("Inside Service 5");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CFARATES",
                 userName = "b2buser", password = "iocl1234", request = "";
         //  System.out.println("......CFA Data url................"+url);
@@ -547,7 +547,7 @@ public class TestService {
     //============================================================================================================================================
     public ApiResponse2     YM_PO_DET_RFC_HO_LUBES(PaymentDto dto) {
 
-        System.out.print("Inside Service 3");
+//        System.out.print("Inside Service 3");
       //  System.out.println(".........inside Ho Lubes...........................");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/YM_PO_DET_RFC_HO_LUBES",
                 userName = "b2buser", password = "iocl1234", request = "";
@@ -588,7 +588,6 @@ public class TestService {
 
             HttpPost postRequest = new HttpPost(url);
 
-            System.out.print(jsonInputString);
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
             String authHeader = "Basic " + new String(encodedAuth);
@@ -617,7 +616,6 @@ public class TestService {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
 
-            System.out.print(response);
             if(response.getOUTPUT() != null) {
                 for (int i = 0; i < response.getOUTPUT().getItem().size(); i++) {
                     YM_PO_DET_RFC_HO_LUBES_Model model = new YM_PO_DET_RFC_HO_LUBES_Model();
@@ -741,7 +739,7 @@ public class TestService {
                         model.setBSTME(null);
                     }
                     ym_po_det_rfc_ho_lubes_repo.save(model);
-                    System.out.println(".......................ho lubes method 1 saved...........................");
+//                    System.out.println(".......................ho lubes method 1 saved...........................");
                 }
             }
 //            System.out.println("Test" + json);
@@ -760,7 +758,7 @@ public class TestService {
     }
 
     public ApiResponse2 YV_EXCHG_RATE(PaymentDto dto) {
-        System.out.print("Inside Service 2");
+//        System.out.print("Inside Service 2");
             String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_EXCHG_RATE",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -885,7 +883,7 @@ public class TestService {
 
     public ApiResponse2
     YV_MATERIAL_MASTER_ALL_VIEWS(PaymentDto dto) {
-        System.out.print("Inside Service 1");
+//        System.out.print("Inside Service 1");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS",
                 userName = "b2buser", password = "iocl1234", request = "";
         String jsonInputString = "";
@@ -936,7 +934,6 @@ public class TestService {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             MaterialMasterResponse response = mapper.readValue(json, MaterialMasterResponse.class);
 
-            System.out.println(response);
             if(response.getE_MARA() != null){
                 for(int i=0;i<response.getE_MARA().getItem().size();i++){
                     MaterialMasterEmaraModel model = new MaterialMasterEmaraModel();
@@ -1236,7 +1233,7 @@ public class TestService {
     }
 
     public ApiResponse2 Y_LUBEBOM_DNLD(PaymentDto dto) {
-        System.out.print("Inside Service 8");
+//        System.out.print("Inside Service 8");
 
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/Y_LUBEBOM_DNLD",
                 userName = "b2buser", password = "iocl1234", request = "";
@@ -1389,7 +1386,7 @@ public class TestService {
     }
 
     public ApiResponse2 YV_CONTRACT_RATES(PaymentDto dto) {
-        System.out.print("Inside Service 7");
+//        System.out.print("Inside Service 7");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_CONTRACT_RATES",
                 userName = "b2buser", password = "iocl1234", request = "";
         Map<Integer, String> responseMap = new HashMap<>();
@@ -1626,7 +1623,7 @@ public class TestService {
     }
 
     public ApiResponse2 YV_TPT_CUSTRTD(PaymentDto dto) {
-        System.out.print("Inside Service 6");
+//        System.out.print("Inside Service 6");
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_TPT_CUSTRTD",
                 userName = "b2buser", password = "iocl1234", request = "";
         String auth = userName + ":" + password;

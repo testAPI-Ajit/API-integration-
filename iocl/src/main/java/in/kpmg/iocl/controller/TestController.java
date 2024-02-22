@@ -214,21 +214,21 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK");
 
 
-//                        for(int i=0;i<documentType.size();i++){
-//                            dto.setDOCUMENT_TYPE(documentType.get(i));
-//                            for(int j=0;j<materialType.size();j++){
-//                                dto.setMATERIAL_TYPE(materialType.get(j));
-//                                for(int k=0;k<WERKS.size();k++){
-//                                    dto.setWERKS(WERKS.get(k));
-//                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
-//                                }
-//                            }
-//                        }
-                            dto.setDOCUMENT_TYPE("ZQ");
-                            dto.setWERKS("32HS");
-                            dto.setMATERIAL_TYPE("BASE");
-                        response = service.YM_PO_DET_RFC_HO_LUBES(dto);
-                        System.out.print("deleting service 3 duplicates");
+                        for(int i=0;i<documentType.size();i++){
+                            dto.setDOCUMENT_TYPE(documentType.get(i));
+                            for(int j=0;j<materialType.size();j++){
+                                dto.setMATERIAL_TYPE(materialType.get(j));
+                                for(int k=0;k<WERKS.size();k++){
+                                    dto.setWERKS(WERKS.get(k));
+                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
+                                }
+                            }
+                        }
+//                            dto.setDOCUMENT_TYPE("ZQ");
+//                            dto.setWERKS("32HS");
+//                            dto.setMATERIAL_TYPE("BASE");
+//                        response = service.YM_PO_DET_RFC_HO_LUBES(dto);
+//                        System.out.print("deleting service 3 duplicates");
 //                        ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
@@ -353,7 +353,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                                 dto.setI_FKDAT(config.getToDate());
                             }
                         } catch (Exception e) {
-                            System.out.print("Error in service 6 API config");
+                            System.out.print("Error in service 7 API config");
                             e.printStackTrace();
                         }
                         System.out.print("Inside Service 7 Controller");
