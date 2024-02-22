@@ -212,16 +212,22 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("MK","WK","ZQ","ZP");
                         List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK");
-                        for(int i=0;i<documentType.size();i++){
-                            dto.setDOCUMENT_TYPE(documentType.get(i));
-                            for(int j=0;j<materialType.size();j++){
-                                dto.setMATERIAL_TYPE(materialType.get(j));
-                                for(int k=0;k<WERKS.size();k++){
-                                    dto.setWERKS(WERKS.get(k));
-                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
-                                }
-                            }
-                        }
+
+
+//                        for(int i=0;i<documentType.size();i++){
+//                            dto.setDOCUMENT_TYPE(documentType.get(i));
+//                            for(int j=0;j<materialType.size();j++){
+//                                dto.setMATERIAL_TYPE(materialType.get(j));
+//                                for(int k=0;k<WERKS.size();k++){
+//                                    dto.setWERKS(WERKS.get(k));
+//                                    response = service.YM_PO_DET_RFC_HO_LUBES(dto);
+//                                }
+//                            }
+//                        }
+                            dto.setDOCUMENT_TYPE("ZQ");
+                            dto.setWERKS("32HS");
+                            dto.setMATERIAL_TYPE("BASE");
+                        response = service.YM_PO_DET_RFC_HO_LUBES(dto);
                         System.out.print("deleting service 3 duplicates");
                         ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);

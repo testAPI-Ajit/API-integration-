@@ -588,6 +588,7 @@ public class TestService {
 
             HttpPost postRequest = new HttpPost(url);
 
+            System.out.print(jsonInputString);
             String auth = userName + ":" + password;
             byte[] encodedAuth = org.apache.commons.codec.binary.Base64.encodeBase64(auth.getBytes(StandardCharsets.ISO_8859_1));
             String authHeader = "Basic " + new String(encodedAuth);
@@ -616,6 +617,7 @@ public class TestService {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             YM_PO_DET_RFC_HO_LUBES_Response response = mapper.readValue(json, YM_PO_DET_RFC_HO_LUBES_Response.class);
 
+            System.out.print(response);
             if(response.getOUTPUT() != null) {
                 for (int i = 0; i < response.getOUTPUT().getItem().size(); i++) {
                     YM_PO_DET_RFC_HO_LUBES_Model model = new YM_PO_DET_RFC_HO_LUBES_Model();
