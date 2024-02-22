@@ -172,7 +172,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                             {
                                 dto.setI_TO_DATE(currentDate.toString());
                             }else {
-                                dto.setI_FROM_DATE(config.getToDate());
+                                dto.setI_TO_DATE(config.getToDate());
                             }
                         } catch (Exception e) {
                             System.out.print("Error in service 2 API config");
