@@ -145,6 +145,7 @@ public class TestService {
                 e1.printStackTrace();
             }
 
+            System.out.print(jsonInputString);
             HttpPost postRequest = new HttpPost(url);
 
             String auth = userName + ":" + password;
