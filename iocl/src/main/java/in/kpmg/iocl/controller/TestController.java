@@ -211,7 +211,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
                         dto.setDOCUMENT_TYPE(environment.getProperty("document_type_YM_PO_DET_RFC_HO_LUBES"));
                         dto.setMATERIAL_TYPE(environment.getProperty("material_type_YM_PO_DET_RFC_HO_LUBES"));
                         List<String> documentType = Arrays.asList("ZS","MK","WK","ZQ","ZP");
-                        List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK");
+                        List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK","ADDT-IND");
 
 
                         for(int i=0;i<documentType.size();i++){
