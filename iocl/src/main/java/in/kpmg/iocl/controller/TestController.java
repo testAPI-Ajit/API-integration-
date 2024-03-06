@@ -123,6 +123,36 @@ String query= "INSERT INTO pricing_tool.document_type_master (id, document_type)
 
 System.out.print(query);
         }
+
+        for(int i=0;i<materialType.size();i++){
+            String query= "INSERT INTO pricing_tool.material_type_master (id, material_type)\n" +
+                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+materialType.get(i)+"');";
+
+            System.out.print(query);
+        }
+
+        for(int i=0;i<divisionCodes.size();i++){
+            String query= "INSERT INTO pricing_tool.division_code_master (id, division_code)\n" +
+                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+divisionCodes.get(i)+"');";
+
+            System.out.print(query);
+        }
+
+
+        for(int i=0;i<WERKS.size();i++){
+            String query= "INSERT INTO pricing_tool.werks_master (id, werks)\n" +
+                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+WERKS.get(i)+"');";
+
+            System.out.print(query);
+        }
+
+
+        for(int i=0;i<BUKRS.size();i++){
+            String query= "INSERT INTO pricing_tool.burks_master (id, burks)\n" +
+                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+BUKRS.get(i)+"');";
+
+            System.out.print(query);
+        }
         for (int serviceNumber = 1; serviceNumber <= 8; serviceNumber++) {
             try {
                 switch (serviceNumber) {
