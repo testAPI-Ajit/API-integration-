@@ -119,7 +119,7 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
         List<String> BUKRS = Arrays.asList("0005","0015","0100","1000","1100","1200","1300","1400","1500","2000","2100","2200","2300","2400","2500","3000","3100","3200","3300","4000","4100","4200","4300","4400","7200","7500","9000","9010","9020","9030","9040","9050","9060","9070","9100","9200","9201","9210","9220","9230","9240","9250","9260","9270","9280","9290","9291","9310","9320","9330","9340","9400","9500","9600","9610","9700","9750","9760","9800","9850","9860","9870","9880","9910","9930","RRPL");
         for(int i=0;i<documentType.size();i++){
 String query= "INSERT INTO pricing_tool.document_type_master (id, document_type)\n" +
-        "VALUES ("+i+","+""+documentType.get(i)+");";
+        "VALUES ("+Integer.valueOf(i+1)+","+"'"+documentType.get(i)+"');";
 
 System.out.print(query);
         }
