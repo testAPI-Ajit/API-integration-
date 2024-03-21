@@ -41,6 +41,9 @@ import java.util.Map;
 @Service
 public class TestService {
     LocalDate currentDate = LocalDate.now();
+
+    @Autowired
+    GrandMasterLgRepo grandMasterLgRepo;
     @Autowired
     Api_Error_Logs_Repository error_logs_repository;
     @Autowired
@@ -934,9 +937,72 @@ public class TestService {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             MaterialMasterResponse response = mapper.readValue(json, MaterialMasterResponse.class);
 
+            if(response.getE_GRADEMAST_LG() != null){
+                for(int i=0;i<response.getE_GRADEMAST_LG().getItem().size();i++){
+                    GrandMasterLg model = new GrandMasterLg();
+                    try {
+                        model.setMandt(response.getE_GRADEMAST_LG().getItem().get(i).getMANDT());
+                    } catch (NullPointerException e) {
+                        model.setMandt(null);
+                    }
+                    try {
+                        model.setYgradecd(response.getE_GRADEMAST_LG().getItem().get(i).getYGRADECD());
+                    } catch (NullPointerException e) {
+                        model.setYgradecd(null);
+                    }
+                    try {
+                        model.setYgrdesc(response.getE_GRADEMAST_LG().getItem().get(i).getYGRDESC());
+                    } catch (NullPointerException e) {
+                        model.setYgrdesc(null);
+                    }
+                    model.setDivision_code(dto.getI_DIVISION());
+                    grandMasterLgRepo.save(model);
+                }
+            }
             if(response.getE_MARA() != null){
                 for(int i=0;i<response.getE_MARA().getItem().size();i++){
                     MaterialMasterEmaraModel model = new MaterialMasterEmaraModel();
+                    try {
+                        model.setBISMT(response.getE_MARA().getItem().get(i).getBISMT());
+                    } catch (NullPointerException e) {
+                        model.setBISMT(null);
+                    }
+
+                    try {
+                        model.setMTART(response.getE_MARA().getItem().get(i).getMTART());
+                    } catch (NullPointerException e) {
+                        model.setMTART(null);
+
+                    }
+                    try {
+                        model.setSTOR(response.getE_MARA().getItem().get(i).getSTOR());
+                    } catch (NullPointerException e) {
+                        model.setSTOR(null);
+                    }
+                    try {
+                        model.setMATKL(response.getE_MARA().getItem().get(i).getMATKL());
+                    } catch (NullPointerException e) {
+                        model.setMATKL(null);
+                    }
+
+                    try {
+                        model.setVOLUM(response.getE_MARA().getItem().get(i).getVOLUM());
+                    } catch (NullPointerException e) {
+                        model.setVOLUM(null);
+
+                    }
+                    try {
+                        model.setVOLEH(response.getE_MARA().getItem().get(i).getVOLEH());
+                    } catch (NullPointerException e) {
+                        model.setVOLEH(null);
+                    }
+
+
+
+
+
+
+
                     try {
                         model.setMATNR(response.getE_MARA().getItem().get(i).getMATNR());
                     } catch (NullPointerException e) {

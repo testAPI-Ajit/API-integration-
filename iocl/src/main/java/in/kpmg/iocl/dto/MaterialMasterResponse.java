@@ -16,6 +16,7 @@ public class MaterialMasterResponse {
     @JsonProperty("E_MVKE")
     private MaterialMasterEmvke E_MVKE;
 
+    @JsonProperty("E_GRADEMAST_LG")
     private E_GRADEMAST_LG E_GRADEMAST_LG;
     @JsonProperty("E_MSG")
     private String E_MSG;

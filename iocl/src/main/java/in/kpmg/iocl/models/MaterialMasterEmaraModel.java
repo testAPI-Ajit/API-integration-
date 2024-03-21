@@ -1,5 +1,6 @@
 package in.kpmg.iocl.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,6 +26,13 @@ public class MaterialMasterEmaraModel {
     private String ERSDA;
     private String division_code;
     private String LAEDA;
+
+    private String BISMT;
+    private String MTART;
+    private String STOR;
+    private String MATKL;
+    private String VOLUM;
+    private String VOLEH;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
