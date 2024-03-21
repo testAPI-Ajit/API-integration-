@@ -324,8 +324,8 @@ documentType.add(dto.getDocument_type());
 //                            dto.setWERKS("32HS");
 //                            dto.setMATERIAL_TYPE("BASE");
 //                        response = service.YM_PO_DET_RFC_HO_LUBES(dto);
-//                        System.out.print("deleting service 3 duplicates");
-//                        ym_po_det_rfc_ho_lubes_repo.delete();
+                        System.out.print("deleting service 3 duplicates");
+                        ym_po_det_rfc_ho_lubes_repo.delete();
                         System.out.println("Executed " + serviceNumber);
 
                         break;
