@@ -16,7 +16,9 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+//@Scheduled(cron = "0 0 0 * * *",zone = "Indian/Maldives")
 public class TestController {
+
     @Autowired
     TestService service;
     @Autowired
@@ -120,6 +122,8 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
 
     @Autowired
     WerksRepo werksRepo;
+
+
     public List<ApiResponse2> fetchdetails() {
         LocalDate currentDate = LocalDate.now();
         LocalDate yesterdayDate = currentDate.minusDays(1);
@@ -128,90 +132,30 @@ MaterialMasterEmbewRepo materialMasterEmbewRepo;
         List<ApiResponse2> finalResult = new ArrayList<>();
         List<String> documentType = new ArrayList<>();
         List<String> materialType = new ArrayList<>();
-                List<String> divisionCodes = new ArrayList<>();
+        List<String> divisionCodes = new ArrayList<>();
         List<String> WERKS = new ArrayList<>();
         List<String> BUKRS= new ArrayList<>();
-
-
-
         List<DocumentTypeModel> documentTypeModels =documentTypeRepo.findAll();
         for(DocumentTypeModel dto : documentTypeModels){
 documentType.add(dto.getDocument_type());
         }
-
         List<MaterialTypeModel> materialTypeModels =materialTypeRepo.findAll();
         for(MaterialTypeModel dto : materialTypeModels){
             materialType.add(dto.getMaterial_type());
         }
-
         List<DivisonCodesModel> divisonCodesModels =divisonCodesRepo.findAll();
         for(DivisonCodesModel dto : divisonCodesModels){
             divisionCodes.add(dto.getDivision_code());
         }
-
         List<WerksModel> werksModels =werksRepo.findAll();
         for(WerksModel dto : werksModels){
             WERKS.add(dto.getWerks());
         }
-
         List<BurksModel> burksModels =burksRepo.findAll();
         for(BurksModel dto : burksModels){
             BUKRS.add(dto.getBurks());
         }
-
-
-
-
-
-
-
-
-
-
-
-
-//        List<String> documentType = Arrays.asList("ZS","MK","WK","ZQ","ZP");
-//        List<String> materialType = Arrays.asList("ADDT", "BASE", "PACK","ADDT-IND");
-//        List<String> divisionCodes = Arrays.asList("LD","LN","LP","LS","LU","MH","SO","AL","AV","CG","FO");
-//        List<String> WERKS = Arrays.asList("2251","5516","5517","5526","5534","5549","5552","5554","5577","5578","5587","5607","5608","5610","5638","5644","5651","5652","5680","5700","5702","734","5746","5747","5748","5750","5765","5766","5768","5810","5811","5825","5841","5849","5862","5863","5864","5870","7F01","7F06","1140","1146","2136","2138","3136","3236","3237","3266","3267","4136","4466","3240","4196","21HS","32HS","41HS");
-//        List<String> BUKRS = Arrays.asList("0005","0015","0100","1000","1100","1200","1300","1400","1500","2000","2100","2200","2300","2400","2500","3000","3100","3200","3300","4000","4100","4200","4300","4400","7200","7500","9000","9010","9020","9030","9040","9050","9060","9070","9100","9200","9201","9210","9220","9230","9240","9250","9260","9270","9280","9290","9291","9310","9320","9330","9340","9400","9500","9600","9610","9700","9750","9760","9800","9850","9860","9870","9880","9910","9930","RRPL");
-//        for(int i=0;i<documentType.size();i++){
-//String query= "INSERT INTO pricing_tool.document_type_master (id, document_type)\n" +
-//        "VALUES ("+Integer.valueOf(i+1)+","+"'"+documentType.get(i)+"');";
-//
-//System.out.print(query);
-//        }
-//
-//        for(int i=0;i<materialType.size();i++){
-//            String query= "INSERT INTO pricing_tool.material_type_master (id, material_type)\n" +
-//                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+materialType.get(i)+"');";
-//
-//            System.out.print(query);
-//        }
-//
-//        for(int i=0;i<divisionCodes.size();i++){
-//            String query= "INSERT INTO pricing_tool.division_code_master (id, division_code)\n" +
-//                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+divisionCodes.get(i)+"');";
-//
-//            System.out.print(query);
-//        }
-//
-//
-//        for(int i=0;i<WERKS.size();i++){
-//            String query= "INSERT INTO pricing_tool.werks_master (id, werks)\n" +
-//                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+WERKS.get(i)+"');";
-//
-//            System.out.print(query);
-//        }
-//
-//
-//        for(int i=0;i<BUKRS.size();i++){
-//            String query= "INSERT INTO pricing_tool.burks_master (id, burks)\n" +
-//                    "VALUES ("+Integer.valueOf(i+1)+","+"'"+BUKRS.get(i)+"');";
-//
-//            System.out.print(query);
-//        }
-        for (int serviceNumber = 1; serviceNumber <= 8; serviceNumber++) {
+        for (int serviceNumber = 1; serviceNumber <= 1; serviceNumber++) {
             try {
                 switch (serviceNumber) {
                     case 1: {
@@ -234,13 +178,7 @@ documentType.add(dto.getDocument_type());
                         }
 
                         System.out.print("Inside Service 1 Controller");
-//                        dto.setI_FROM_DATE(environment.getProperty("I_FROM_DATE_YV_MATERIAL_MASTER_ALL_VIEWS"));
-//                        dto.setI_TO_DATE("2023-12-31");
 
-
-
-//
-//                        dto.setI_TO_DATE(currentDate.toString());
                         for(int i=0;i<divisionCodes.size();i++) {
                                 dto.setI_DIVISION(divisionCodes.get(i));
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);

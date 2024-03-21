@@ -31,4 +31,17 @@ public class MaterialMasterEmaraItem {
     private String ERSDA;
     @JsonProperty("LAEDA")
     private String LAEDA;
+
+    @JsonProperty("BISMT")
+    private String BISMT;
+    @JsonProperty("MTART")
+    private String MTART;
+    @JsonProperty("STOR")
+    private String STOR;
+    @JsonProperty("MATKL")
+    private String MATKL;
+    @JsonProperty("VOLUM")
+    private String VOLUM;
+    @JsonProperty("VOLEH")
+    private String VOLEH;
 }
