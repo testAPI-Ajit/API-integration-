@@ -23,6 +23,7 @@ public class MaterialMasterEmbewModel {
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
 
+    @Column(name = "division_code")
     private String division_code;
 
     private String MATNR;

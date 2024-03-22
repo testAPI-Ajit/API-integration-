@@ -23,6 +23,7 @@ public class MaterialMasterEmvkeModel {
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
 
+    @Column(name = "division_code")
     private String division_code;
     private String MATNR;
     private String VKORG;

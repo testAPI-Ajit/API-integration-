@@ -22,7 +22,7 @@ public class MaterialMasterEmarcModel {
     @UpdateTimestamp
     @Column(name="modifieddate")
     public LocalDateTime  modifiedDate;
-
+    @Column(name = "division_code")
     private String division_code;
     private String MATNR;
     private String WERKS;

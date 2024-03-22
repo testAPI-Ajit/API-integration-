@@ -24,6 +24,7 @@ public class MaterialMasterEmaraModel {
     private String NTGEW;
     private String TRAGR;
     private String ERSDA;
+    @Column(name = "division_code")
     private String division_code;
     @Column(name = "laeda")
     private String LAEDA;
