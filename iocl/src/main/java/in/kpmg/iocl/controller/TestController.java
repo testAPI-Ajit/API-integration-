@@ -155,7 +155,7 @@ documentType.add(dto.getDocument_type());
         for(BurksModel dto : burksModels){
             BUKRS.add(dto.getBurks());
         }
-        for (int serviceNumber = 1; serviceNumber <= 1; serviceNumber++) {
+        for (int serviceNumber = 1; serviceNumber <= 8; serviceNumber++) {
             try {
                 switch (serviceNumber) {
                     case 1: {
@@ -184,7 +184,7 @@ documentType.add(dto.getDocument_type());
                                 response = service.YV_MATERIAL_MASTER_ALL_VIEWS(dto);
                             }
                         System.out.print("deleting service 1 duplicates");
-                        materialMasterEmaraRepo.delete();
+//                        materialMasterEmaraRepo.delete();
                         materialMasterEmarcRepo.delete();
                         materialMasterEmvkeRepo.delete();
                         materialMasterEmbewRepo.delete();

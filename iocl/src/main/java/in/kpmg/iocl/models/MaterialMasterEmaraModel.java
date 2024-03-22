@@ -25,14 +25,21 @@ public class MaterialMasterEmaraModel {
     private String TRAGR;
     private String ERSDA;
     private String division_code;
+    @Column(name = "LAEDA")
     private String LAEDA;
-
+    @Column(name = "BISMT")
     private String BISMT;
+    @Column(name = "MTART")
     private String MTART;
+    @Column(name = "STOR")
     private String STOR;
+    @Column(name = "MATKL")
     private String MATKL;
+    @Column(name = "VOLUM")
     private String VOLUM;
+    @Column(name = "VOLEH")
     private String VOLEH;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

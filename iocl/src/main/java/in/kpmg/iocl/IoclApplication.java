@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.util.List;
 
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 public class IoclApplication {
 
 //    @Scheduled(cron = "0 0 0 * * *",zone = "Indian/Maldives")

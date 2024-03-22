@@ -890,6 +890,7 @@ public class TestService {
         String url = "https://coisebizuat.ds.indianoil.in:7000/uat/RESTAdapter/RFC/MKHO/YV_MATERIAL_MASTER_ALL_VIEWS",
                 userName = "b2buser", password = "iocl1234", request = "";
         String jsonInputString = "";
+//        dto.setI_DIVISION("LU");
         try {
 
             StringEntity inputString = null;
