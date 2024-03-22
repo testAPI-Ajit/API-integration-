@@ -1,9 +1,7 @@
 package in.kpmg.iocl.service;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import in.kpmg.iocl.dto.*;
 import in.kpmg.iocl.models.*;
 import in.kpmg.iocl.repository.*;
@@ -17,15 +15,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -33,8 +26,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.time.LocalDate;
-import java.util.Base64;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -997,13 +988,6 @@ public class TestService {
                     } catch (NullPointerException e) {
                         model.setVOLEH(null);
                     }
-
-
-
-
-
-
-
                     try {
                         model.setMATNR(response.getE_MARA().getItem().get(i).getMATNR());
                     } catch (NullPointerException e) {

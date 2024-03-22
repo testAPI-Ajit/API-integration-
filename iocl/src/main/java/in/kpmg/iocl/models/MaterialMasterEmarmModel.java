@@ -24,7 +24,7 @@ public class MaterialMasterEmarmModel {
     public LocalDateTime  modifiedDate;
 
     private String division_code;
-
+    private String MANTR;
     private String MATNR;
     private String UMREN;
     private String MEINH;
@@ -32,5 +32,4 @@ public class MaterialMasterEmarmModel {
     private String UMREZ;
     private String MEINS;
 
-    //MANTR
 }

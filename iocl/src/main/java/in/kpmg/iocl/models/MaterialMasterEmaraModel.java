@@ -25,19 +25,19 @@ public class MaterialMasterEmaraModel {
     private String TRAGR;
     private String ERSDA;
     private String division_code;
-    @Column(name = "LAEDA")
+    @Column(name = "laeda")
     private String LAEDA;
-    @Column(name = "BISMT")
+    @Column(name = "bismt")
     private String BISMT;
-    @Column(name = "MTART")
+    @Column(name = "mtart")
     private String MTART;
-    @Column(name = "STOR")
+    @Column(name = "stor")
     private String STOR;
-    @Column(name = "MATKL")
+    @Column(name = "matkl")
     private String MATKL;
-    @Column(name = "VOLUM")
+    @Column(name = "volum")
     private String VOLUM;
-    @Column(name = "VOLEH")
+    @Column(name = "voleh")
     private String VOLEH;
 
 

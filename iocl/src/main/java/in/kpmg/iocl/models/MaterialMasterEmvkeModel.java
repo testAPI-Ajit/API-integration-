@@ -25,10 +25,10 @@ public class MaterialMasterEmvkeModel {
 
     private String division_code;
     private String MATNR;
-    private String  VKORG;
-    private String  VTWEG;
-    private String  KONDM;
-    private String  KONDMT;
+    private String VKORG;
+    private String VTWEG;
+    private String KONDM;
+    private String KONDMT;
     private String KTGRM;
     private String KTGRMT;
     private String MVGR1;
