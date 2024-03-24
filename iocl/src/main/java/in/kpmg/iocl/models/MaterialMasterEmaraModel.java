@@ -12,17 +12,29 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "YV_MATERIAL_MASTER_ALL_VIEWS_E_MARA")
 public class MaterialMasterEmaraModel {
+    @Column(name = "matnr")
     private String MATNR;
+    @Column(name = "maktx")
     private String MAKTX;
+    @Column(name = "bism")
     private Integer BISM;
+    @Column(name = "groes")
     private String GROES;
+    @Column(name = "wrkst")
     private String WRKST;
+    @Column(name = "ferth")
     private String FERTH;
+    @Column(name = "normt")
     private String NORMT;
+    @Column(name = "meins")
     private String MEINS;
+    @Column(name = "brgew")
     private String BRGEW;
+    @Column(name = "ntgew")
     private String NTGEW;
+    @Column(name = "tragr")
     private String TRAGR;
+    @Column(name = "ersda")
     private String ERSDA;
     @Column(name = "division_code")
     private String division_code;
