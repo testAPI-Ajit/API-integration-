@@ -338,6 +338,11 @@ where cnt>1)
 }
 
 
+ "WERKS": 4221,
+ "WEMNG": "10.850",
+ "KSCHL": ""
+
+
 
 
 
@@ -353,4 +358,4 @@ LU API resp
 
 
 
-Error creating bean with name 'dataSourceScriptDatabaseInitializer': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+

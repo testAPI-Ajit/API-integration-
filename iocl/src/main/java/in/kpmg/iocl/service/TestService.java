@@ -613,12 +613,20 @@ public class TestService {
             if(response.getOUTPUT() != null) {
                 for (int i = 0; i < response.getOUTPUT().getItem().size(); i++) {
                     YM_PO_DET_RFC_HO_LUBES_Model model = new YM_PO_DET_RFC_HO_LUBES_Model();
-
+                    try {
+                        model.setWEMNG(response.getOUTPUT().getItem().get(i).getWEMNG());
+                    } catch (NullPointerException e) {
+                        model.setWEMNG(null);
+                    }
+                    try {
+                        model.setKSCHL(response.getOUTPUT().getItem().get(i).getKSCHL());
+                    } catch (NullPointerException e) {
+                        model.setKSCHL(null);
+                    }
                     try {
                         model.setBSART(response.getOUTPUT().getItem().get(i).getBSART());
                     } catch (NullPointerException e) {
                         model.setBSART(null);
-
                     }
                     try {
                         model.setMENGE(response.getOUTPUT().getItem().get(i).getMENGE());

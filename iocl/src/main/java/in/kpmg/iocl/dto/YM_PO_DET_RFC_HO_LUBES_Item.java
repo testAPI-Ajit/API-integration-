@@ -48,4 +48,8 @@ public class YM_PO_DET_RFC_HO_LUBES_Item {
     private String MEINS;
     @JsonProperty("BSTME")
     private String BSTME;
+    @JsonProperty("WEMNG")
+    private String WEMNG;
+    @JsonProperty("KSCHL")
+    private String KSCHL;
 }
