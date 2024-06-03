@@ -10,11 +10,11 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface MaterialMasterEmbewRepo extends JpaRepository<MaterialMasterEmbewModel,Long> {
-    @Transactional
-    @Modifying
-    @Query(value = "delete from pricing_tool.yv_material_master_all_views_e_mbew where ctid in (\n" +
-            "select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY\n" +
-            "bklas,bwkey,matnr,stprs,verpr,vprsv,division_code\torder by id desc)cnt from pricing_tool.yv_material_master_all_views_e_mbew) table1\n" +
-            "where cnt>1)",nativeQuery = true)
-    void delete();
+//    @Transactional
+//    @Modifying
+//    @Query(value = "delete from pricing_tool.yv_material_master_all_views_e_mbew where ctid in (\n" +
+//            "select ctid from (select ctid,ROW_NUMBER() OVER (PARTITION BY\n" +
+//            "bklas,bwkey,matnr,stprs,verpr,vprsv,division_code\torder by id desc)cnt from pricing_tool.yv_material_master_all_views_e_mbew) table1\n" +
+//            "where cnt>1)",nativeQuery = true)
+//    void delete();
 }

@@ -185,10 +185,10 @@ documentType.add(dto.getDocument_type());
                             }
                         System.out.print("deleting service 1 duplicates");
 //                        materialMasterEmaraRepo.delete();
-                        materialMasterEmarcRepo.delete();
-                        materialMasterEmvkeRepo.delete();
-                        materialMasterEmbewRepo.delete();
-                        materialMasterEmarmRepo.delete();
+//                        materialMasterEmarcRepo.delete();
+//                        materialMasterEmvkeRepo.delete();
+//                        materialMasterEmbewRepo.delete();
+//                        materialMasterEmarmRepo.delete();
                         System.out.println("Executed " + serviceNumber);
                         break;
                     }
