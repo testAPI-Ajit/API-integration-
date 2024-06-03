@@ -52,4 +52,6 @@ public class YM_PO_DET_RFC_HO_LUBES_Item {
     private String WEMNG;
     @JsonProperty("KSCHL")
     private String KSCHL;
+    @JsonProperty("RESWK")
+    private String RESWK;
 }

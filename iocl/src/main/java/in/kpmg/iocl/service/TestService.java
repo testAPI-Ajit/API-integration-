@@ -614,6 +614,11 @@ public class TestService {
                 for (int i = 0; i < response.getOUTPUT().getItem().size(); i++) {
                     YM_PO_DET_RFC_HO_LUBES_Model model = new YM_PO_DET_RFC_HO_LUBES_Model();
                     try {
+                        model.setRESWK(response.getOUTPUT().getItem().get(i).getRESWK());
+                    } catch (NullPointerException e) {
+                        model.setRESWK(null);
+                    }
+                    try {
                         model.setWEMNG(response.getOUTPUT().getItem().get(i).getWEMNG());
                     } catch (NullPointerException e) {
                         model.setWEMNG(null);

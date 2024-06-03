@@ -47,5 +47,7 @@ public class YM_PO_DET_RFC_HO_LUBES_Model {
     private String WEMNG;
     @Column(name = "kschl")
     private String KSCHL;
+    @Column(name = "reswk")
+    private String RESWK;
 
 }
